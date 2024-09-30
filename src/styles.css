@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+.logo {
+    background-image: url('assets/logo.svg');
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
