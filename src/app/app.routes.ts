@@ -18,6 +18,11 @@ export const routes: Routes = [
         canActivate: [roleGuard(['advogado', 'estagiario'])],
         loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
       },
+      {
+        path: 'clientes',
+        canActivate: [roleGuard(['advogado', 'estagiario'])],
+        loadChildren: () => import('./features/clientes/clientes.routes').then((m) => m.CLIENTES_ROUTES),
+      },
     ],
   },
   { path: '**', redirectTo: 'login' },

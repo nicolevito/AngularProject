@@ -1,0 +1,84 @@
+@if (cliente(); as cliente) {
+  <div class="cliente-detail-page">
+    <div class="cliente-detail-page__header">
+      <a mat-icon-button routerLink="/clientes" aria-label="Voltar">
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+      <h1>{{ nomeExibicaoCliente(cliente) }}</h1>
+      <span class="cliente-detail-page__spacer"></span>
+      <a mat-stroked-button [routerLink]="['/clientes', cliente.id, 'editar']">
+        <mat-icon>edit</mat-icon>
+        Editar
+      </a>
+      <button mat-stroked-button color="warn" (click)="excluir()">
+        <mat-icon>delete</mat-icon>
+        Excluir
+      </button>
+    </div>
+
+    <div class="cliente-detail-page__grid">
+      <mat-card class="cliente-detail-card">
+        <h2>Dados cadastrais</h2>
+        <dl>
+          <dt>Tipo</dt>
+          <dd>{{ cliente.tipo === 'fisica' ? 'Pessoa Física' : 'Pessoa Jurídica' }}</dd>
+
+          <dt>{{ cliente.tipo === 'fisica' ? 'CPF' : 'CNPJ' }}</dt>
+          <dd>{{ documentoCliente(cliente) | cpfCnpj }}</dd>
+
+          @if (cliente.tipo === 'fisica') {
+            <dt>Data de nascimento</dt>
+            <dd>{{ cliente.dataNascimento | date: 'dd/MM/yyyy' }}</dd>
+            @if (cliente.profissao) {
+              <dt>Profissão</dt>
+              <dd>{{ cliente.profissao }}</dd>
+            }
+          } @else {
+            @if (cliente.nomeFantasia) {
+              <dt>Nome fantasia</dt>
+              <dd>{{ cliente.nomeFantasia }}</dd>
+            }
+            <dt>Representante legal</dt>
+            <dd>{{ cliente.representanteLegal }}</dd>
+          }
+
+          <dt>E-mail</dt>
+          <dd>{{ cliente.email }}</dd>
+          <dt>Telefone</dt>
+          <dd>{{ cliente.telefone }}</dd>
+        </dl>
+      </mat-card>
+
+      <mat-card class="cliente-detail-card">
+        <h2>Endereço</h2>
+        <p class="cliente-detail-page__endereco">
+          {{ cliente.endereco.logradouro }}, {{ cliente.endereco.numero }}
+          @if (cliente.endereco.complemento) {
+            &ndash; {{ cliente.endereco.complemento }}
+          }
+          <br />
+          {{ cliente.endereco.bairro }} &ndash; {{ cliente.endereco.cidade }}/{{ cliente.endereco.uf }}
+          <br />
+          CEP {{ cliente.endereco.cep }}
+        </p>
+      </mat-card>
+    </div>
+
+    <mat-card class="cliente-detail-card">
+      <h2>Processos vinculados ({{ processos().length }})</h2>
+      @if (processos().length === 0) {
+        <p class="cliente-detail-page__vazio">Nenhum processo vinculado a este cliente.</p>
+      } @else {
+        <ul class="cliente-detail-page__processos">
+          @for (processo of processos(); track processo.id) {
+            <li>
+              <a [routerLink]="['/processos', processo.id]">{{ processo.numeroProcesso }}</a>
+              <span class="cliente-detail-page__processo-area">{{ AREA_DIREITO_LABEL[processo.area] }}</span>
+              <app-status-badge [texto]="STATUS_PROCESSO_LABEL[processo.status]" cor="info" />
+            </li>
+          }
+        </ul>
+      }
+    </mat-card>
+  </div>
+}

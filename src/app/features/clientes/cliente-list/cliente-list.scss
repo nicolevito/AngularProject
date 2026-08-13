@@ -1,0 +1,35 @@
+.cliente-list-page {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__busca {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  &__tabela {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__secundario {
+    font-size: 0.78rem;
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  &__acoes {
+    text-align: right;
+    white-space: nowrap;
+  }
+}

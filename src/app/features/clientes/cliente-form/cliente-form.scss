@@ -1,0 +1,65 @@
+.cliente-form-page {
+  max-width: 860px;
+  margin: 0 auto;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__erro {
+    color: #b3261e;
+    background: rgba(211, 47, 47, 0.08);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  &__acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin: 1rem 0 2rem;
+  }
+}
+
+.cliente-form-card {
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+
+  h2 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+.tipo-radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 1rem;
+
+  &__full {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

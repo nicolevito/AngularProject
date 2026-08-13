@@ -1,0 +1,180 @@
+<div class="cliente-form-page">
+  <div class="cliente-form-page__header">
+    <a mat-icon-button routerLink="/clientes" aria-label="Voltar">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1>{{ modoEdicao ? 'Editar Cliente' : 'Novo Cliente' }}</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submeter()">
+    <mat-card class="cliente-form-card">
+      <h2>Tipo de pessoa</h2>
+      <mat-radio-group formControlName="tipo" class="tipo-radio-group">
+        <mat-radio-button value="fisica">Pessoa Física</mat-radio-button>
+        <mat-radio-button value="juridica">Pessoa Jurídica</mat-radio-button>
+      </mat-radio-group>
+
+      <div formGroupName="dadosEspecificos" class="form-grid">
+        @if (tipoAtual() === 'fisica') {
+          <mat-form-field appearance="outline">
+            <mat-label>Nome completo</mat-label>
+            <input matInput formControlName="nome" />
+            @if (dadosEspecificos.nome.invalid && dadosEspecificos.nome.touched) {
+              <mat-error>Informe o nome completo.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput formControlName="cpf" placeholder="000.000.000-00" />
+            @if (dadosEspecificos.cpf.hasError('required') && dadosEspecificos.cpf.touched) {
+              <mat-error>Informe o CPF.</mat-error>
+            } @else if (dadosEspecificos.cpf.hasError('cpfInvalido') && dadosEspecificos.cpf.touched) {
+              <mat-error>CPF inválido.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Data de nascimento</mat-label>
+            <input matInput type="date" formControlName="dataNascimento" />
+            @if (dadosEspecificos.dataNascimento.invalid && dadosEspecificos.dataNascimento.touched) {
+              <mat-error>Informe a data de nascimento.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Profissão</mat-label>
+            <input matInput formControlName="profissao" />
+          </mat-form-field>
+
+          @if (dadosEspecificos.representanteLegalMenor.validator) {
+            <mat-form-field appearance="outline" class="form-grid__full">
+              <mat-label>Representante legal (cliente menor de idade)</mat-label>
+              <input matInput formControlName="representanteLegalMenor" />
+              @if (dadosEspecificos.representanteLegalMenor.invalid && dadosEspecificos.representanteLegalMenor.touched) {
+                <mat-error>Obrigatório para clientes menores de idade.</mat-error>
+              }
+            </mat-form-field>
+          }
+        } @else {
+          <mat-form-field appearance="outline">
+            <mat-label>Razão social</mat-label>
+            <input matInput formControlName="razaoSocial" />
+            @if (dadosEspecificos.razaoSocial.invalid && dadosEspecificos.razaoSocial.touched) {
+              <mat-error>Informe a razão social.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nome fantasia</mat-label>
+            <input matInput formControlName="nomeFantasia" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>CNPJ</mat-label>
+            <input matInput formControlName="cnpj" placeholder="00.000.000/0000-00" />
+            @if (dadosEspecificos.cnpj.hasError('required') && dadosEspecificos.cnpj.touched) {
+              <mat-error>Informe o CNPJ.</mat-error>
+            } @else if (dadosEspecificos.cnpj.hasError('cnpjInvalido') && dadosEspecificos.cnpj.touched) {
+              <mat-error>CNPJ inválido.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Representante legal</mat-label>
+            <input matInput formControlName="representanteLegal" />
+            @if (dadosEspecificos.representanteLegal.invalid && dadosEspecificos.representanteLegal.touched) {
+              <mat-error>Informe o representante legal.</mat-error>
+            }
+          </mat-form-field>
+        }
+      </div>
+    </mat-card>
+
+    <mat-card class="cliente-form-card">
+      <h2>Contato</h2>
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input matInput type="email" formControlName="email" />
+          @if (form.controls.email.invalid && form.controls.email.touched) {
+            <mat-error>Informe um e-mail válido.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input matInput formControlName="telefone" placeholder="(11) 98765-4321" />
+          @if (form.controls.telefone.invalid && form.controls.telefone.touched) {
+            <mat-error>Informe um telefone válido: (00) 00000-0000.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <mat-card class="cliente-form-card" formGroupName="endereco">
+      <h2>Endereço</h2>
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput formControlName="cep" placeholder="00000-000" />
+          @if (buscandoCep()) {
+            <mat-spinner matSuffix diameter="18" />
+          }
+          @if (form.get('endereco.cep')?.hasError('required') && form.get('endereco.cep')?.touched) {
+            <mat-error>Informe o CEP.</mat-error>
+          } @else if (form.get('endereco.cep')?.hasError('pattern') && form.get('endereco.cep')?.touched) {
+            <mat-error>CEP no formato 00000-000.</mat-error>
+          } @else if (form.get('endereco.cep')?.hasError('cepNaoEncontrado') && form.get('endereco.cep')?.touched) {
+            <mat-error>CEP não encontrado.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-grid__full">
+          <mat-label>Logradouro</mat-label>
+          <input matInput formControlName="logradouro" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput formControlName="numero" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Complemento</mat-label>
+          <input matInput formControlName="complemento" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Bairro</mat-label>
+          <input matInput formControlName="bairro" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <input matInput formControlName="cidade" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>UF</mat-label>
+          <input matInput formControlName="uf" maxlength="2" style="text-transform: uppercase" />
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    @if (erro()) {
+      <p class="cliente-form-page__erro">{{ erro() }}</p>
+    }
+
+    <div class="cliente-form-page__acoes">
+      <a mat-stroked-button routerLink="/clientes">Cancelar</a>
+      <button mat-flat-button color="primary" type="submit" [disabled]="salvando()">
+        @if (salvando()) {
+          <mat-spinner diameter="20" />
+        } @else {
+          {{ modoEdicao ? 'Salvar alterações' : 'Cadastrar cliente' }}
+        }
+      </button>
+    </div>
+  </form>
+</div>

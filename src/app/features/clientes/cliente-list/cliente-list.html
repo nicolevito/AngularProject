@@ -1,0 +1,81 @@
+<div class="cliente-list-page">
+  <div class="cliente-list-page__header">
+    <h1>Clientes</h1>
+    <a mat-flat-button color="primary" routerLink="/clientes/novo">
+      <mat-icon>add</mat-icon>
+      Novo Cliente
+    </a>
+  </div>
+
+  <mat-form-field appearance="outline" class="cliente-list-page__busca">
+    <mat-label>Buscar por nome, documento ou e-mail</mat-label>
+    <input matInput [value]="busca()" (input)="buscar($any($event.target).value)" />
+    <mat-icon matPrefix>search</mat-icon>
+  </mat-form-field>
+
+  @if (filtrados().length === 0) {
+    <app-empty-state
+      icone="groups"
+      titulo="Nenhum cliente encontrado"
+      descricao="Tente ajustar a busca ou cadastre um novo cliente."
+    />
+  } @else {
+    <table mat-table [dataSource]="paginados()" class="cliente-list-page__tabela">
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let cliente">
+          <a [routerLink]="['/clientes', cliente.id]">{{ nomeExibicaoCliente(cliente) }}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.tipo === 'fisica' ? 'Pessoa Física' : 'Pessoa Jurídica' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="documento">
+        <th mat-header-cell *matHeaderCellDef>CPF/CNPJ</th>
+        <td mat-cell *matCellDef="let cliente">{{ documentoCliente(cliente) | cpfCnpj }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="contato">
+        <th mat-header-cell *matHeaderCellDef>Contato</th>
+        <td mat-cell *matCellDef="let cliente">
+          <div>{{ cliente.email }}</div>
+          <div class="cliente-list-page__secundario">{{ cliente.telefone }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cidade">
+        <th mat-header-cell *matHeaderCellDef>Cidade/UF</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.endereco.cidade }}/{{ cliente.endereco.uf }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let cliente" class="cliente-list-page__acoes">
+          <a mat-icon-button [routerLink]="['/clientes', cliente.id, 'editar']" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button
+            mat-icon-button
+            matTooltip="Excluir"
+            (click)="excluir(cliente.id, nomeExibicaoCliente(cliente))"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="filtrados().length"
+      [pageSize]="tamanhoPagina()"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="mudarPagina($event)"
+    />
+  }
+</div>
