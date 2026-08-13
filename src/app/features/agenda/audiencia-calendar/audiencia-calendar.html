@@ -1,0 +1,35 @@
+<div class="audiencia-calendar-page">
+  <h1>Agenda de Audiências</h1>
+
+  <div class="audiencia-calendar-page__layout">
+    <app-calendar-month [eventos]="eventos()" (diaSelecionado)="diaSelecionado.set($event)" />
+
+    <mat-card class="audiencia-calendar-page__painel">
+      @if (diaSelecionado(); as dia) {
+        <h2>{{ dia | date: 'dd/MM/yyyy' }}</h2>
+        @if (audienciasDoDiaSelecionado().length === 0) {
+          <p class="audiencia-calendar-page__vazio">Nenhuma audiência nesta data.</p>
+        } @else {
+          <ul class="audiencia-calendar-page__lista">
+            @for (audiencia of audienciasDoDiaSelecionado(); track audiencia.id) {
+              <li>
+                <div class="audiencia-calendar-page__linha">
+                  <strong>{{ TIPO_AUDIENCIA_LABEL[audiencia.tipo] }}</strong>
+                  <app-status-badge [texto]="LABEL_STATUS_AUDIENCIA[audiencia.status]" [cor]="statusCor(audiencia.status)" />
+                </div>
+                <a [routerLink]="['/processos', audiencia.processoId]">{{ numeroProcesso(audiencia.processoId) }}</a>
+                <span class="audiencia-calendar-page__local">
+                  <mat-icon>{{ audiencia.virtual ? 'videocam' : 'location_on' }}</mat-icon>
+                  {{ audiencia.local }}
+                </span>
+                <span class="audiencia-calendar-page__hora">{{ audiencia.data | date: 'HH:mm' }}</span>
+              </li>
+            }
+          </ul>
+        }
+      } @else {
+        <p class="audiencia-calendar-page__vazio">Selecione um dia no calendário para ver as audiências.</p>
+      }
+    </mat-card>
+  </div>
+</div>

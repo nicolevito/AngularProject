@@ -28,6 +28,16 @@ export const routes: Routes = [
         canActivate: [roleGuard(['advogado', 'estagiario'])],
         loadChildren: () => import('./features/processos/processos.routes').then((m) => m.PROCESSOS_ROUTES),
       },
+      {
+        path: 'prazos',
+        canActivate: [roleGuard(['advogado', 'estagiario'])],
+        loadChildren: () => import('./features/prazos/prazos.routes').then((m) => m.PRAZOS_ROUTES),
+      },
+      {
+        path: 'agenda',
+        canActivate: [roleGuard(['advogado', 'estagiario'])],
+        loadChildren: () => import('./features/agenda/agenda.routes').then((m) => m.AGENDA_ROUTES),
+      },
     ],
   },
   { path: '**', redirectTo: 'login' },
