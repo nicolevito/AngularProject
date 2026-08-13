@@ -1,0 +1,57 @@
+<div class="meus-processos-page">
+  <h1>Meus Processos</h1>
+
+  @if (processos().length === 0) {
+    <app-empty-state
+      icone="gavel"
+      titulo="Nenhum processo encontrado"
+      descricao="Assim que um processo for cadastrado em seu nome, ele aparecerá aqui."
+    />
+  } @else {
+    <mat-accordion>
+      @for (processo of processos(); track processo.id) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ processo.numeroProcesso }}</mat-panel-title>
+            <mat-panel-description>
+              {{ AREA_DIREITO_LABEL[processo.area] }}
+              <app-status-badge [texto]="statusLabel(processo.status)" [cor]="statusCor(processo.status)" />
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="processo-painel">
+            <dl>
+              <dt>Advogado responsável</dt>
+              <dd>{{ advogadoNome(processo) }}</dd>
+              <dt>Vara</dt>
+              <dd>{{ processo.vara }}</dd>
+              <dt>Comarca</dt>
+              <dd>{{ processo.comarca }}</dd>
+              <dt>Data de abertura</dt>
+              <dd>{{ processo.dataAbertura | date: 'dd/MM/yyyy' }}</dd>
+            </dl>
+
+            @if (processo.observacoes) {
+              <p class="processo-painel__obs">{{ processo.observacoes }}</p>
+            }
+
+            <h3>Andamentos</h3>
+            @if (processo.andamentos.length === 0) {
+              <p class="processo-painel__vazio">Nenhum andamento registrado.</p>
+            } @else {
+              <ul class="timeline">
+                @for (andamento of andamentosOrdenados(processo); track andamento.id) {
+                  <li class="timeline__item">
+                    <span class="timeline__data">{{ andamento.data | date: 'dd/MM/yyyy' }}</span>
+                    <span class="timeline__tipo">{{ TIPO_ANDAMENTO_LABEL[andamento.tipo] }}</span>
+                    <span class="timeline__descricao">{{ andamento.descricao }}</span>
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  }
+</div>

@@ -48,6 +48,12 @@ export const routes: Routes = [
         canActivate: [roleGuard(['advogado'])],
         loadChildren: () => import('./features/financeiro/financeiro.routes').then((m) => m.FINANCEIRO_ROUTES),
       },
+      {
+        path: 'portal',
+        canActivate: [roleGuard(['cliente'])],
+        loadChildren: () =>
+          import('./features/portal-cliente/portal-cliente.routes').then((m) => m.PORTAL_CLIENTE_ROUTES),
+      },
     ],
   },
   { path: '**', redirectTo: 'login' },

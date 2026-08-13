@@ -1,0 +1,46 @@
+<div class="meus-documentos-page">
+  <h1>Meus Documentos</h1>
+
+  @if (documentos().length === 0) {
+    <app-empty-state
+      icone="folder_open"
+      titulo="Nenhum documento disponível"
+      descricao="Documentos anexados aos seus processos aparecerão aqui."
+    />
+  } @else {
+    <table mat-table [dataSource]="documentos()" class="meus-documentos-page__tabela">
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let doc">{{ doc.nome }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let doc">{{ tipoLabel(doc.tipo) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="processo">
+        <th mat-header-cell *matHeaderCellDef>Processo</th>
+        <td mat-cell *matCellDef="let doc">{{ numeroProcesso(doc.processoId) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="versao">
+        <th mat-header-cell *matHeaderCellDef>Versão</th>
+        <td mat-cell *matCellDef="let doc">v{{ doc.versao }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tamanho">
+        <th mat-header-cell *matHeaderCellDef>Tamanho</th>
+        <td mat-cell *matCellDef="let doc">{{ formatarTamanho(doc.tamanhoBytes) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="criadoEm">
+        <th mat-header-cell *matHeaderCellDef>Enviado em</th>
+        <td mat-cell *matCellDef="let doc">{{ doc.criadoEm | date: 'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+  }
+</div>

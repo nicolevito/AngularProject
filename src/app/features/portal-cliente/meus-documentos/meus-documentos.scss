@@ -1,0 +1,13 @@
+.meus-documentos-page {
+  h1 {
+    margin: 0 0 1.25rem;
+    font-size: 1.4rem;
+  }
+
+  &__tabela {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}
