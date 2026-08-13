@@ -37,3 +37,13 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+// Angular Material's floating label (.mdc-floating-label, and the <mat-label>
+// projected inside it) renders with pointer events enabled, which lets it sit
+// on top of the field it labels and swallow clicks meant for the input/select
+// underneath (most noticeable on narrow fields, where the resting/unfocused
+// label overlaps the control). Labels should never intercept pointer events.
+.mdc-floating-label,
+mat-label {
+  pointer-events: none !important;
+}
