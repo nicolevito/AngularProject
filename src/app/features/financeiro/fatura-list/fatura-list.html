@@ -1,0 +1,94 @@
+<div class="fatura-list-page">
+  <div class="fatura-list-page__header">
+    <h1>Financeiro</h1>
+    <a mat-flat-button color="primary" routerLink="/financeiro/faturas/nova">
+      <mat-icon>add</mat-icon>
+      Nova Fatura
+    </a>
+  </div>
+
+  <div class="fatura-list-page__resumo">
+    <div class="resumo-card resumo-card--pendente">
+      <span class="resumo-card__label">Pendente</span>
+      <span class="resumo-card__valor">{{ resumo().pendente | currency: 'BRL' }}</span>
+    </div>
+    <div class="resumo-card resumo-card--atrasada">
+      <span class="resumo-card__label">Atrasado</span>
+      <span class="resumo-card__valor">{{ resumo().atrasada | currency: 'BRL' }}</span>
+    </div>
+    <div class="resumo-card resumo-card--paga">
+      <span class="resumo-card__label">Recebido</span>
+      <span class="resumo-card__valor">{{ resumo().paga | currency: 'BRL' }}</span>
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline" class="fatura-list-page__filtro">
+    <mat-label>Status</mat-label>
+    <mat-select [value]="statusFiltro()" (selectionChange)="filtrarStatus($event.value)">
+      <mat-option value="">Todos</mat-option>
+      @for (opcao of statusOpcoes; track opcao[0]) {
+        <mat-option [value]="opcao[0]">{{ opcao[1] }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  @if (faturasFiltradas().length === 0) {
+    <app-empty-state icone="receipt_long" titulo="Nenhuma fatura encontrada" />
+  } @else {
+    <table mat-table [dataSource]="faturasFiltradas()" class="fatura-list-page__tabela">
+      <ng-container matColumnDef="numero">
+        <th mat-header-cell *matHeaderCellDef>Número</th>
+        <td mat-cell *matCellDef="let fatura">{{ fatura.numero }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+        <td mat-cell *matCellDef="let fatura">{{ nomeCliente(fatura.clienteId) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="emissao">
+        <th mat-header-cell *matHeaderCellDef>Emissão</th>
+        <td mat-cell *matCellDef="let fatura">{{ fatura.dataEmissao | date: 'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vencimento">
+        <th mat-header-cell *matHeaderCellDef>Vencimento</th>
+        <td mat-cell *matCellDef="let fatura">{{ fatura.dataVencimento | date: 'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let fatura">{{ fatura.valorTotal | currency: 'BRL' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let fatura">
+          <app-status-badge [texto]="statusLabel(fatura.status)" [cor]="statusCor(fatura.status)" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let fatura" class="fatura-list-page__acoes">
+          @if (fatura.status === 'pendente' || fatura.status === 'atrasada') {
+            <button mat-icon-button matTooltip="Marcar como paga" [matMenuTriggerFor]="menuPagamento">
+              <mat-icon>paid</mat-icon>
+            </button>
+            <mat-menu #menuPagamento="matMenu">
+              @for (forma of formasPagamento; track forma) {
+                <button mat-menu-item (click)="marcarPaga(fatura.id, forma)">{{ forma | uppercase }}</button>
+              }
+            </mat-menu>
+            <button mat-icon-button matTooltip="Cancelar fatura" (click)="cancelar(fatura.id)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          }
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+  }
+</div>

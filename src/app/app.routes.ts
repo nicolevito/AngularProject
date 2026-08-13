@@ -43,6 +43,11 @@ export const routes: Routes = [
         canActivate: [roleGuard(['advogado', 'estagiario'])],
         loadChildren: () => import('./features/documentos/documentos.routes').then((m) => m.DOCUMENTOS_ROUTES),
       },
+      {
+        path: 'financeiro',
+        canActivate: [roleGuard(['advogado'])],
+        loadChildren: () => import('./features/financeiro/financeiro.routes').then((m) => m.FINANCEIRO_ROUTES),
+      },
     ],
   },
   { path: '**', redirectTo: 'login' },

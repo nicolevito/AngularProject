@@ -1,0 +1,70 @@
+.fatura-list-page {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__resumo {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  &__filtro {
+    width: 100%;
+    max-width: 240px;
+    display: block;
+  }
+
+  &__tabela {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__acoes {
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+.resumo-card {
+  flex: 1;
+  min-width: 180px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &__label {
+    font-size: 0.78rem;
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  &__valor {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  &--pendente {
+    border-left-color: #1d5fd6;
+  }
+  &--atrasada {
+    border-left-color: #b3261e;
+  }
+  &--paga {
+    border-left-color: #1a7a45;
+  }
+}

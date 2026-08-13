@@ -1,0 +1,96 @@
+<div class="fatura-form-page">
+  <div class="fatura-form-page__header">
+    <a mat-icon-button routerLink="/financeiro" aria-label="Voltar">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1>Nova Fatura</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submeter()">
+    <mat-card class="fatura-form-card">
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput formControlName="numero" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Cliente</mat-label>
+          <mat-select formControlName="clienteId">
+            @for (cliente of clientes(); track cliente.id) {
+              <mat-option [value]="cliente.id">{{ nomeExibicaoCliente(cliente) }}</mat-option>
+            }
+          </mat-select>
+          @if (form.controls.clienteId.invalid && form.controls.clienteId.touched) {
+            <mat-error>Selecione o cliente.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Processo (opcional)</mat-label>
+          <mat-select formControlName="processoId">
+            <mat-option value="">Nenhum</mat-option>
+            @for (processo of processos(); track processo.id) {
+              <mat-option [value]="processo.id">{{ processo.numeroProcesso }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data de emissão</mat-label>
+          <input matInput type="date" formControlName="dataEmissao" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data de vencimento</mat-label>
+          <input matInput type="date" formControlName="dataVencimento" />
+          @if (form.controls.dataVencimento.invalid && form.controls.dataVencimento.touched) {
+            <mat-error>Informe o vencimento.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <mat-card class="fatura-form-card">
+      <h2>Itens</h2>
+      <div formArrayName="itens" class="itens-lista">
+        @for (item of itens.controls; track $index; let i = $index) {
+          <div [formGroupName]="i" class="itens-lista__item">
+            <mat-form-field appearance="outline">
+              <mat-label>Descrição</mat-label>
+              <input matInput formControlName="descricao" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Valor (R$)</mat-label>
+              <input matInput type="number" min="0.01" step="0.01" formControlName="valor" />
+            </mat-form-field>
+            <button
+              mat-icon-button
+              type="button"
+              [disabled]="itens.length <= 1"
+              (click)="removerItem(i)"
+              aria-label="Remover item"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        }
+      </div>
+
+      <button mat-stroked-button type="button" (click)="adicionarItem()">
+        <mat-icon>add</mat-icon>
+        Adicionar item
+      </button>
+
+      <div class="fatura-form-card__total">
+        <span>Total</span>
+        <strong>{{ totalAtual() | currency: 'BRL' }}</strong>
+      </div>
+    </mat-card>
+
+    <div class="fatura-form-page__acoes">
+      <a mat-stroked-button routerLink="/financeiro">Cancelar</a>
+      <button mat-flat-button color="primary" type="submit">Emitir fatura</button>
+    </div>
+  </form>
+</div>
