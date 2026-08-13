@@ -1,0 +1,8 @@
+<div class="empty-state">
+  <mat-icon>{{ icone() }}</mat-icon>
+  <p class="empty-state__titulo">{{ titulo() }}</p>
+  @if (descricao()) {
+    <p class="empty-state__descricao">{{ descricao() }}</p>
+  }
+  <ng-content />
+</div>

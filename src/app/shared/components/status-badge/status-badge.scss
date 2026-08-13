@@ -1,0 +1,35 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+
+  &--neutro {
+    background: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  &--info {
+    background: rgba(33, 118, 255, 0.12);
+    color: #1d5fd6;
+  }
+
+  &--sucesso {
+    background: rgba(29, 158, 88, 0.14);
+    color: #1a7a45;
+  }
+
+  &--aviso {
+    background: rgba(219, 148, 6, 0.16);
+    color: #93610a;
+  }
+
+  &--perigo {
+    background: rgba(211, 47, 47, 0.14);
+    color: #b3261e;
+  }
+}
