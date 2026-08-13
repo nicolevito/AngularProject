@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -35,6 +35,8 @@ const MENU_PORTAL: ItemMenu[] = [
 })
 export class Sidebar {
   private readonly authService = inject(AuthService);
+
+  readonly itemClicado = output<void>();
 
   readonly itens = computed(() => {
     const role = this.authService.role();

@@ -18,6 +18,7 @@
       descricao="Você está em dia com os prazos do escritório."
     />
   } @else {
+    <div class="tabela-scroll">
     <table mat-table [dataSource]="prazosOrdenados()" class="prazo-list-page__tabela">
       <ng-container matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef>Título</th>
@@ -73,5 +74,6 @@
       <tr mat-header-row *matHeaderRowDef="colunas"></tr>
       <tr mat-row *matRowDef="let row; columns: colunas"></tr>
     </table>
+    </div>
   }
 </div>

@@ -61,6 +61,7 @@
       descricao="Anexe petições, contratos e demais arquivos vinculados aos processos."
     />
   } @else {
+    <div class="tabela-scroll">
     <table mat-table [dataSource]="documentos()" class="documento-list-page__tabela">
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
@@ -110,5 +111,6 @@
       <tr mat-header-row *matHeaderRowDef="colunas"></tr>
       <tr mat-row *matRowDef="let row; columns: colunas"></tr>
     </table>
+    </div>
   }
 </div>

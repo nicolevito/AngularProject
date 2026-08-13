@@ -36,7 +36,10 @@
   }
 }
 
-@media (max-width: 900px) {
+// Alinhado ao breakpoint Handset do Angular CDK (usado em shell.ts para
+// decidir o modo do sidenav) — abaixo disso o botão de menu passa a fazer
+// sentido, porque o sidenav vira overlay em vez de ficar sempre visível.
+@media (max-width: 599px) {
   .topbar__menu-btn {
     display: inline-flex;
   }

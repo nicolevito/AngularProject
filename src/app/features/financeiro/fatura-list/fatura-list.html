@@ -35,6 +35,7 @@
   @if (faturasFiltradas().length === 0) {
     <app-empty-state icone="receipt_long" titulo="Nenhuma fatura encontrada" />
   } @else {
+    <div class="tabela-scroll">
     <table mat-table [dataSource]="faturasFiltradas()" class="fatura-list-page__tabela">
       <ng-container matColumnDef="numero">
         <th mat-header-cell *matHeaderCellDef>Número</th>
@@ -90,5 +91,6 @@
       <tr mat-header-row *matHeaderRowDef="colunas"></tr>
       <tr mat-row *matRowDef="let row; columns: colunas"></tr>
     </table>
+    </div>
   }
 </div>

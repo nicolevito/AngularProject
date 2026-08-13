@@ -32,6 +32,7 @@
       descricao="Ajuste os filtros ou cadastre um novo processo."
     />
   } @else {
+    <div class="tabela-scroll">
     <table mat-table [dataSource]="paginados()" class="processo-list-page__tabela">
       <ng-container matColumnDef="numero">
         <th mat-header-cell *matHeaderCellDef>Número</th>
@@ -79,6 +80,7 @@
       <tr mat-header-row *matHeaderRowDef="colunas"></tr>
       <tr mat-row *matRowDef="let row; columns: colunas"></tr>
     </table>
+    </div>
 
     <mat-paginator
       [length]="filtrados().length"

@@ -18,3 +18,9 @@
     overflow-y: auto;
   }
 }
+
+@media (max-width: 599px) {
+  .shell__main {
+    padding: 1rem;
+  }
+}

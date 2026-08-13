@@ -47,3 +47,10 @@ body {
 mat-label {
   pointer-events: none !important;
 }
+
+// Utilitário para telas com tabelas largas em viewports estreitos: rola só a
+// tabela horizontalmente, em vez de deixar a página inteira transbordar.
+.tabela-scroll {
+  width: 100%;
+  overflow-x: auto;
+}

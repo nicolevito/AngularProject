@@ -20,6 +20,7 @@
       descricao="Tente ajustar a busca ou cadastre um novo cliente."
     />
   } @else {
+    <div class="tabela-scroll">
     <table mat-table [dataSource]="paginados()" class="cliente-list-page__tabela">
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
@@ -70,6 +71,7 @@
       <tr mat-header-row *matHeaderRowDef="colunas"></tr>
       <tr mat-row *matRowDef="let row; columns: colunas"></tr>
     </table>
+    </div>
 
     <mat-paginator
       [length]="filtrados().length"

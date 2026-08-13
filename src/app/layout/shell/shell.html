@@ -1,11 +1,12 @@
 <mat-sidenav-container class="shell">
   <mat-sidenav
     class="shell__sidenav"
-    mode="side"
+    [mode]="modoSidenav()"
     [opened]="sidenavAberto()"
     [fixedInViewport]="true"
+    (closed)="fecharSidenavMobile()"
   >
-    <app-sidebar />
+    <app-sidebar (itemClicado)="fecharSidenavMobile()" />
   </mat-sidenav>
 
   <mat-sidenav-content class="shell__content">

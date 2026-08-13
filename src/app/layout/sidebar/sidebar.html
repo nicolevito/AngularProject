@@ -6,7 +6,13 @@
 
   <mat-nav-list class="sidebar__nav">
     @for (item of itens(); track item.rota) {
-      <a mat-list-item [routerLink]="item.rota" routerLinkActive="sidebar__link--ativo" class="sidebar__link">
+      <a
+        mat-list-item
+        [routerLink]="item.rota"
+        routerLinkActive="sidebar__link--ativo"
+        class="sidebar__link"
+        (click)="itemClicado.emit()"
+      >
         <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
         <span matListItemTitle>{{ item.label }}</span>
       </a>

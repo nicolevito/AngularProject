@@ -8,6 +8,7 @@
       descricao="Documentos anexados aos seus processos aparecerão aqui."
     />
   } @else {
+    <div class="tabela-scroll">
     <table mat-table [dataSource]="documentos()" class="meus-documentos-page__tabela">
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
@@ -42,5 +43,6 @@
       <tr mat-header-row *matHeaderRowDef="colunas"></tr>
       <tr mat-row *matRowDef="let row; columns: colunas"></tr>
     </table>
+    </div>
   }
 </div>
