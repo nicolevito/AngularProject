@@ -1,0 +1,44 @@
+<div class="calendar">
+  <div class="calendar__header">
+    <button mat-icon-button (click)="mesAnterior()" aria-label="Mês anterior">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <span class="calendar__titulo">{{ rotuloMes() }}</span>
+    <button mat-icon-button (click)="proximoMes()" aria-label="Próximo mês">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+    <button mat-stroked-button class="calendar__hoje" (click)="mesAtual()">Hoje</button>
+  </div>
+
+  <div class="calendar__grade calendar__grade--cabecalho">
+    @for (dia of diasSemana; track dia) {
+      <div class="calendar__dia-semana">{{ dia }}</div>
+    }
+  </div>
+
+  @for (semana of semanas(); track $index) {
+    <div class="calendar__grade">
+      @for (dia of semana; track dia.chave) {
+        <button
+          type="button"
+          class="calendar__celula"
+          [class.calendar__celula--fora]="!dia.noMesAtual"
+          [class.calendar__celula--hoje]="dia.hoje"
+          (click)="selecionarDia(dia.chave)"
+        >
+          <span class="calendar__numero">{{ dia.numero }}</span>
+          <div class="calendar__eventos">
+            @for (evento of eventosVisiveis(dia.chave); track evento.titulo) {
+              <span class="calendar__evento" [class]="'calendar__evento--' + (evento.cor ?? 'neutro')">
+                {{ evento.titulo }}
+              </span>
+            }
+            @if (eventosExtras(dia.chave) > 0) {
+              <span class="calendar__evento-extra">+{{ eventosExtras(dia.chave) }} mais</span>
+            }
+          </div>
+        </button>
+      }
+    </div>
+  }
+</div>
