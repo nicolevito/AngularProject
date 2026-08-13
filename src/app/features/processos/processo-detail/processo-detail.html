@@ -1,0 +1,131 @@
+@if (processo(); as processo) {
+  <div class="processo-detail-page">
+    <div class="processo-detail-page__header">
+      <a mat-icon-button routerLink="/processos" aria-label="Voltar">
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+      <div>
+        <h1>{{ processo.numeroProcesso }}</h1>
+        <span class="processo-detail-page__subtitulo">{{ nomeCliente() }} &middot; {{ AREA_DIREITO_LABEL[processo.area] }}</span>
+      </div>
+      <span class="processo-detail-page__spacer"></span>
+      <app-status-badge [texto]="STATUS_PROCESSO_LABEL[processo.status]" cor="info" />
+      <a *appHasRole="['advogado']" mat-stroked-button [routerLink]="['/processos', processo.id, 'editar']">
+        <mat-icon>edit</mat-icon>
+        Editar
+      </a>
+    </div>
+
+    <div class="processo-detail-page__grid">
+      <mat-card class="processo-detail-card">
+        <h2>Dados do processo</h2>
+        <dl>
+          <dt>Cliente</dt>
+          <dd><a [routerLink]="['/clientes', processo.clienteId]">{{ nomeCliente() }}</a></dd>
+          <dt>Advogado responsável</dt>
+          <dd>{{ advogado()?.nome ?? '—' }}</dd>
+          <dt>Vara</dt>
+          <dd>{{ processo.vara }}</dd>
+          <dt>Comarca</dt>
+          <dd>{{ processo.comarca }}</dd>
+          <dt>Valor da causa</dt>
+          <dd>{{ processo.valorCausa | currency: 'BRL' }}</dd>
+          <dt>Data de abertura</dt>
+          <dd>{{ processo.dataAbertura | date: 'dd/MM/yyyy' }}</dd>
+        </dl>
+        @if (processo.observacoes) {
+          <p class="processo-detail-card__obs">{{ processo.observacoes }}</p>
+        }
+      </mat-card>
+
+      <mat-card class="processo-detail-card">
+        <h2>Partes</h2>
+        <ul class="processo-detail-page__partes">
+          @for (parte of processo.partes; track parte.id) {
+            <li>
+              <strong>{{ parte.nome }}</strong>
+              <span>{{ parte.tipo === 'autor' ? 'Autor' : parte.tipo === 'reu' ? 'Réu' : 'Terceiro interessado' }}</span>
+              <span class="processo-detail-page__documento">{{ parte.documento }}</span>
+            </li>
+          }
+        </ul>
+      </mat-card>
+    </div>
+
+    <mat-card class="processo-detail-card">
+      <div class="processo-detail-card__header-linha">
+        <h2>Andamentos ({{ andamentosOrdenados().length }})</h2>
+        <button mat-stroked-button type="button" (click)="alternarFormAndamento()">
+          <mat-icon>add</mat-icon>
+          Registrar andamento
+        </button>
+      </div>
+
+      @if (mostrandoFormAndamento()) {
+        <form [formGroup]="formAndamento" (ngSubmit)="adicionarAndamento()" class="andamento-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="tipo">
+              @for (tipo of TIPO_ANDAMENTO_LABEL | keyvalue; track tipo.key) {
+                <mat-option [value]="tipo.key">{{ tipo.value }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="andamento-form__descricao">
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="descricao" />
+          </mat-form-field>
+          <button mat-flat-button color="primary" type="submit">Salvar</button>
+        </form>
+      }
+
+      @if (andamentosOrdenados().length === 0) {
+        <p class="processo-detail-page__vazio">Nenhum andamento registrado.</p>
+      } @else {
+        <ul class="timeline">
+          @for (andamento of andamentosOrdenados(); track andamento.id) {
+            <li class="timeline__item">
+              <span class="timeline__data">{{ andamento.data | date: 'dd/MM/yyyy' }}</span>
+              <span class="timeline__tipo">{{ TIPO_ANDAMENTO_LABEL[andamento.tipo] }}</span>
+              <span class="timeline__descricao">{{ andamento.descricao }}</span>
+            </li>
+          }
+        </ul>
+      }
+    </mat-card>
+
+    <div class="processo-detail-page__grid">
+      <mat-card class="processo-detail-card">
+        <h2>Prazos ({{ prazos().length }})</h2>
+        @if (prazos().length === 0) {
+          <p class="processo-detail-page__vazio">Nenhum prazo vinculado.</p>
+        } @else {
+          <ul class="processo-detail-page__lista-simples">
+            @for (prazo of prazos(); track prazo.id) {
+              <li>
+                <span>{{ prazo.titulo }}</span>
+                <span class="processo-detail-page__documento">{{ prazo.dataVencimento | date: 'dd/MM/yyyy' }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </mat-card>
+
+      <mat-card class="processo-detail-card">
+        <h2>Documentos ({{ documentos().length }})</h2>
+        @if (documentos().length === 0) {
+          <p class="processo-detail-page__vazio">Nenhum documento anexado.</p>
+        } @else {
+          <ul class="processo-detail-page__lista-simples">
+            @for (documento of documentos(); track documento.id) {
+              <li>
+                <span>{{ documento.nome }}</span>
+                <span class="processo-detail-page__documento">v{{ documento.versao }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </mat-card>
+    </div>
+  </div>
+}

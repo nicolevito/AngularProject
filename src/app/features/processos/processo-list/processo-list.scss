@@ -1,0 +1,36 @@
+.processo-list-page {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__filtros {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    mat-form-field {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+
+  &__tabela {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__acoes {
+    text-align: right;
+    white-space: nowrap;
+  }
+}

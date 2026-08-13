@@ -1,0 +1,247 @@
+<div class="processo-form-page">
+  <div class="processo-form-page__header">
+    <a mat-icon-button routerLink="/processos" aria-label="Voltar">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1>{{ modoEdicao ? 'Editar Processo' : 'Novo Processo' }}</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submeter()">
+    <mat-stepper orientation="horizontal" [linear]="false" class="processo-stepper">
+      <mat-step label="Dados gerais">
+        <mat-card class="processo-form-card">
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Número do processo</mat-label>
+              <input matInput formControlName="numeroProcesso" placeholder="0000000-00.0000.0.00.0000" />
+              @if (numeroProcessoStatus() === 'PENDING') {
+                <mat-spinner matSuffix diameter="18" />
+              }
+              @if (form.controls.numeroProcesso.hasError('required') && form.controls.numeroProcesso.touched) {
+                <mat-error>Informe o número do processo.</mat-error>
+              } @else if (form.controls.numeroProcesso.hasError('pattern') && form.controls.numeroProcesso.touched) {
+                <mat-error>Formato esperado: 0000000-00.0000.0.00.0000</mat-error>
+              } @else if (form.controls.numeroProcesso.hasError('numeroProcessoDuplicado')) {
+                <mat-error>Já existe um processo com este número.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Cliente</mat-label>
+              <mat-select formControlName="clienteId">
+                @for (cliente of clientes(); track cliente.id) {
+                  <mat-option [value]="cliente.id">{{ nomeExibicaoCliente(cliente) }}</mat-option>
+                }
+              </mat-select>
+              @if (form.controls.clienteId.invalid && form.controls.clienteId.touched) {
+                <mat-error>Selecione o cliente.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Advogado responsável</mat-label>
+              <mat-select formControlName="advogadoResponsavelId">
+                @for (advogado of advogados(); track advogado.id) {
+                  <mat-option [value]="advogado.id">{{ advogado.nome }}</mat-option>
+                }
+              </mat-select>
+              @if (form.controls.advogadoResponsavelId.invalid && form.controls.advogadoResponsavelId.touched) {
+                <mat-error>Selecione o advogado responsável.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Área do direito</mat-label>
+              <mat-select formControlName="area">
+                @for (area of areas; track area[0]) {
+                  <mat-option [value]="area[0]">{{ area[1] }}</mat-option>
+                }
+              </mat-select>
+              @if (form.controls.area.invalid && form.controls.area.touched) {
+                <mat-error>Selecione a área.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Vara</mat-label>
+              <input matInput formControlName="vara" />
+              @if (form.controls.vara.invalid && form.controls.vara.touched) {
+                <mat-error>Informe a vara.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Comarca</mat-label>
+              <input matInput formControlName="comarca" />
+              @if (form.controls.comarca.invalid && form.controls.comarca.touched) {
+                <mat-error>Informe a comarca.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Valor da causa (R$)</mat-label>
+              <input matInput type="number" min="0" step="0.01" formControlName="valorCausa" />
+              @if (form.controls.valorCausa.invalid && form.controls.valorCausa.touched) {
+                <mat-error>Informe um valor válido.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Data de abertura</mat-label>
+              <input matInput type="date" formControlName="dataAbertura" />
+              @if (form.controls.dataAbertura.hasError('required') && form.controls.dataAbertura.touched) {
+                <mat-error>Informe a data de abertura.</mat-error>
+              } @else if (form.controls.dataAbertura.hasError('dataFutura')) {
+                <mat-error>A data de abertura não pode ser futura.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-grid__full">
+              <mat-label>Observações</mat-label>
+              <textarea matInput formControlName="observacoes" rows="3" maxlength="1000"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="processo-form-card__acoes">
+            <button mat-flat-button color="primary" matStepperNext type="button">Próximo</button>
+          </div>
+        </mat-card>
+      </mat-step>
+
+      <mat-step label="Partes">
+        <mat-card class="processo-form-card">
+          <p class="processo-form-card__hint">
+            Informe as partes envolvidas no processo. É necessário ao menos um autor e um réu.
+          </p>
+
+          @if (partes.hasError('semAutorOuReu') && partes.touched) {
+            <p class="processo-form-card__erro">É preciso ao menos uma parte "Autor" e uma "Réu".</p>
+          }
+
+          <div formArrayName="partes" class="partes-lista">
+            @for (parte of partes.controls; track $index; let i = $index) {
+              <div [formGroupName]="i" class="partes-lista__item">
+                <mat-form-field appearance="outline">
+                  <mat-label>Nome</mat-label>
+                  <input matInput formControlName="nome" (blur)="partes.markAsTouched()" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Tipo</mat-label>
+                  <mat-select formControlName="tipo" (selectionChange)="partes.markAsTouched()">
+                    <mat-option value="autor">Autor</mat-option>
+                    <mat-option value="reu">Réu</mat-option>
+                    <mat-option value="terceiro_interessado">Terceiro interessado</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>CPF/CNPJ</mat-label>
+                  <input matInput formControlName="documento" />
+                  @if (parte.get('documento')?.hasError('documentoInvalido') && parte.get('documento')?.touched) {
+                    <mat-error>Documento inválido.</mat-error>
+                  }
+                </mat-form-field>
+
+                <button
+                  mat-icon-button
+                  type="button"
+                  matTooltip="Remover parte"
+                  [disabled]="partes.length <= 2"
+                  (click)="removerParte(i)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            }
+          </div>
+
+          <button mat-stroked-button type="button" (click)="adicionarParte()">
+            <mat-icon>add</mat-icon>
+            Adicionar parte
+          </button>
+
+          <div class="processo-form-card__acoes">
+            <button mat-stroked-button matStepperPrevious type="button">Voltar</button>
+            <button mat-flat-button color="primary" matStepperNext type="button">Próximo</button>
+          </div>
+        </mat-card>
+      </mat-step>
+
+      @if (!modoEdicao) {
+        <mat-step label="Prazos iniciais">
+          <mat-card class="processo-form-card">
+            <p class="processo-form-card__hint">
+              Opcional: cadastre já os primeiros prazos deste processo. Eles precisam vencer após a data de abertura.
+            </p>
+
+            <div formArrayName="prazosIniciais" class="prazos-lista">
+              @for (prazo of prazosIniciais.controls; track $index; let i = $index) {
+                <div [formGroupName]="i" class="prazos-lista__item">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Título</mat-label>
+                    <input matInput formControlName="titulo" />
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Tipo</mat-label>
+                    <mat-select formControlName="tipo">
+                      @for (tipo of tiposPrazo; track tipo[0]) {
+                        <mat-option [value]="tipo[0]">{{ tipo[1] }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Vencimento</mat-label>
+                    <input matInput type="date" formControlName="dataVencimento" />
+                    @if (prazo.get('dataVencimento')?.hasError('vencimentoAntesDaAbertura')) {
+                      <mat-error>Deve ser posterior à abertura do processo.</mat-error>
+                    }
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Responsável</mat-label>
+                    <mat-select formControlName="responsavelId">
+                      @for (advogado of advogados(); track advogado.id) {
+                        <mat-option [value]="advogado.id">{{ advogado.nome }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+
+                  <button mat-icon-button type="button" matTooltip="Remover prazo" (click)="removerPrazo(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              }
+            </div>
+
+            <button mat-stroked-button type="button" (click)="adicionarPrazo()">
+              <mat-icon>add</mat-icon>
+              Adicionar prazo
+            </button>
+
+            <div class="processo-form-card__acoes">
+              <button mat-stroked-button matStepperPrevious type="button">Voltar</button>
+            </div>
+          </mat-card>
+        </mat-step>
+      }
+    </mat-stepper>
+
+    @if (erro()) {
+      <p class="processo-form-page__erro">{{ erro() }}</p>
+    }
+
+    <div class="processo-form-page__acoes">
+      <a mat-stroked-button routerLink="/processos">Cancelar</a>
+      <button mat-flat-button color="primary" type="submit" [disabled]="salvando()">
+        @if (salvando()) {
+          <mat-spinner diameter="20" />
+        } @else {
+          {{ modoEdicao ? 'Salvar alterações' : 'Cadastrar processo' }}
+        }
+      </button>
+    </div>
+  </form>
+</div>
