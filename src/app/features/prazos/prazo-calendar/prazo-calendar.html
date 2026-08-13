@@ -1,0 +1,36 @@
+<div class="prazo-calendar-page">
+  <div class="prazo-calendar-page__header">
+    <a mat-icon-button routerLink="/prazos" aria-label="Voltar">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1>Calendário de Prazos</h1>
+  </div>
+
+  <div class="prazo-calendar-page__layout">
+    <app-calendar-month [eventos]="eventos()" (diaSelecionado)="diaSelecionado.set($event)" />
+
+    <mat-card class="prazo-calendar-page__painel">
+      @if (diaSelecionado(); as dia) {
+        <h2>{{ dia | date: 'dd/MM/yyyy' }}</h2>
+        @if (prazosDoDiaSelecionado().length === 0) {
+          <p class="prazo-calendar-page__vazio">Nenhum prazo nesta data.</p>
+        } @else {
+          <ul class="prazo-calendar-page__lista">
+            @for (prazo of prazosDoDiaSelecionado(); track prazo.id) {
+              <li>
+                <a [routerLink]="['/processos', prazo.processoId]">{{ numeroProcesso(prazo.processoId) }}</a>
+                <span>{{ prazo.titulo }}</span>
+                <app-status-badge
+                  [texto]="prazo.concluido ? 'Concluído' : 'Pendente'"
+                  [cor]="prazo.concluido ? 'sucesso' : urgenciaCor(prazo.dataVencimento)"
+                />
+              </li>
+            }
+          </ul>
+        }
+      } @else {
+        <p class="prazo-calendar-page__vazio">Selecione um dia no calendário para ver os prazos.</p>
+      }
+    </mat-card>
+  </div>
+</div>

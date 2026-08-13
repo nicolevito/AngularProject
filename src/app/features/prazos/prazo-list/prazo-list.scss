@@ -1,0 +1,30 @@
+.prazo-list-page {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__tabela {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+
+  &__concluido {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__acoes {
+    text-align: right;
+  }
+}

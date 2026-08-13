@@ -1,0 +1,62 @@
+.prazo-calendar-page {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  &__painel {
+    padding: 1.5rem;
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  &__vazio {
+    color: rgba(0, 0, 0, 0.55);
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  &__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .prazo-calendar-page__layout {
+    grid-template-columns: 1fr;
+  }
+}
