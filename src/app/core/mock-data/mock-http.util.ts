@@ -26,10 +26,3 @@ export function simulateMutation<T>(fn: () => T): Observable<T> {
     }),
   );
 }
-
-/** Lança um erro simulado com a probabilidade informada (0 a 1) — útil para exercitar estados de erro na UI. */
-export function simulateError(chance = 0): void {
-  if (chance > 0 && Math.random() < chance) {
-    throw new Error('Falha simulada de rede. Tente novamente.');
-  }
-}
