@@ -1,0 +1,20 @@
+.shell {
+  height: 100vh;
+
+  &__sidenav {
+    width: 240px;
+    border-right: none;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    background: #f4f5f7;
+  }
+
+  &__main {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+}

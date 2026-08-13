@@ -1,0 +1,43 @@
+.topbar {
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1a2332;
+
+  &__menu-btn {
+    display: none;
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  &__usuario {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-transform: none;
+  }
+
+  &__usuario-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.15;
+  }
+
+  &__usuario-nome {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  &__usuario-role {
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.55);
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar__menu-btn {
+    display: inline-flex;
+  }
+}

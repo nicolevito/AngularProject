@@ -1,0 +1,42 @@
+.sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #1a2332;
+  color: #fff;
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.25rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    mat-icon {
+      color: #d4af37;
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    padding-top: 0.5rem;
+    background: transparent;
+
+    --mat-list-list-item-label-text-color: rgba(255, 255, 255, 0.75);
+    --mat-list-list-item-leading-icon-color: rgba(255, 255, 255, 0.75);
+    --mat-list-list-item-hover-label-text-color: #fff;
+    --mat-list-list-item-hover-leading-icon-color: #fff;
+    --mat-list-list-item-hover-state-layer-color: rgba(255, 255, 255, 0.08);
+    --mat-list-list-item-focus-state-layer-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &__link {
+    &--ativo {
+      --mat-list-list-item-label-text-color: #fff;
+      --mat-list-list-item-leading-icon-color: #d4af37;
+      background: rgba(212, 175, 55, 0.15);
+    }
+  }
+}

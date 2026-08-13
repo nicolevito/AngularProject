@@ -1,0 +1,17 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav
+    class="shell__sidenav"
+    mode="side"
+    [opened]="sidenavAberto()"
+    [fixedInViewport]="true"
+  >
+    <app-sidebar />
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shell__content">
+    <app-topbar (abrirMenu)="alternarSidenav()" />
+    <main class="shell__main">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

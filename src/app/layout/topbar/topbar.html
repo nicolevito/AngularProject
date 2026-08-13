@@ -1,0 +1,27 @@
+<mat-toolbar class="topbar">
+  <button mat-icon-button class="topbar__menu-btn" (click)="abrirMenu.emit()" aria-label="Abrir menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="topbar__spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="menuUsuario" class="topbar__usuario">
+    <mat-icon>account_circle</mat-icon>
+    <span class="topbar__usuario-info">
+      <span class="topbar__usuario-nome">{{ usuario()?.nome }}</span>
+      <span class="topbar__usuario-role">{{ roleLabel() }}</span>
+    </span>
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #menuUsuario="matMenu">
+    <button mat-menu-item (click)="resetarDados()">
+      <mat-icon>restart_alt</mat-icon>
+      <span>Resetar dados demo</span>
+    </button>
+    <button mat-menu-item (click)="sair()">
+      <mat-icon>logout</mat-icon>
+      <span>Sair</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

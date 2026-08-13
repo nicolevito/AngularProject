@@ -1,0 +1,15 @@
+<div class="sidebar">
+  <div class="sidebar__brand">
+    <mat-icon>balance</mat-icon>
+    <span>Alvarenga &amp; Bittencourt</span>
+  </div>
+
+  <mat-nav-list class="sidebar__nav">
+    @for (item of itens(); track item.rota) {
+      <a mat-list-item [routerLink]="item.rota" routerLinkActive="sidebar__link--ativo" class="sidebar__link">
+        <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
+        <span matListItemTitle>{{ item.label }}</span>
+      </a>
+    }
+  </mat-nav-list>
+</div>
