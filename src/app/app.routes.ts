@@ -16,7 +16,7 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         canActivate: [roleGuard(['advogado', 'estagiario'])],
-        loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
+        loadChildren: () => import('./features/dashboard/dashboard.routes').then((m) => m.DASHBOARD_ROUTES),
       },
       {
         path: 'clientes',

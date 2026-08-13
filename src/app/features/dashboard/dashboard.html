@@ -1,2 +1,89 @@
-<h1>Dashboard</h1>
-<p>Em construção.</p>
+<div class="dashboard">
+  <h1>Dashboard</h1>
+
+  <div class="dashboard__kpis">
+    <mat-card class="kpi-card">
+      <mat-icon>gavel</mat-icon>
+      <div>
+        <span class="kpi-card__valor">{{ totalProcessosAtivos() }}</span>
+        <span class="kpi-card__label">Processos ativos</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="kpi-card">
+      <mat-icon>event_busy</mat-icon>
+      <div>
+        <span class="kpi-card__valor">{{ prazosProximos7Dias() }}</span>
+        <span class="kpi-card__label">Prazos nos próximos 7 dias</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="kpi-card">
+      <mat-icon>groups</mat-icon>
+      <div>
+        <span class="kpi-card__valor">{{ totalClientes() }}</span>
+        <span class="kpi-card__label">Clientes ativos</span>
+      </div>
+    </mat-card>
+
+    @if (ehAdvogado()) {
+      <mat-card class="kpi-card">
+        <mat-icon>payments</mat-icon>
+        <div>
+          <span class="kpi-card__valor">{{ faturamentoDoMes() | currency: 'BRL' : 'symbol' : '1.0-0' }}</span>
+          <span class="kpi-card__label">Faturamento do mês</span>
+        </div>
+      </mat-card>
+
+      <mat-card class="kpi-card">
+        <mat-icon>trending_down</mat-icon>
+        <div>
+          <span class="kpi-card__valor">{{ taxaInadimplencia() | number: '1.0-1' }}%</span>
+          <span class="kpi-card__label">Taxa de inadimplência</span>
+        </div>
+      </mat-card>
+    }
+  </div>
+
+  <div class="dashboard__graficos">
+    <mat-card class="chart-card">
+      <h2>Processos por status</h2>
+      <div class="chart-card__canvas">
+        <canvas baseChart [data]="statusChartData()" [options]="statusChartOptions" type="doughnut"></canvas>
+      </div>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <h2>Processos por área do direito</h2>
+      <div class="chart-card__canvas">
+        <canvas baseChart [data]="areaChartData()" [options]="areaChartOptions" type="bar"></canvas>
+      </div>
+    </mat-card>
+
+    @if (ehAdvogado()) {
+      <mat-card class="chart-card chart-card--largo">
+        <h2>Faturamento — últimos 6 meses</h2>
+        <div class="chart-card__canvas">
+          <canvas baseChart [data]="faturamentoChartData()" [options]="faturamentoChartOptions" type="bar"></canvas>
+        </div>
+      </mat-card>
+    }
+  </div>
+
+  <mat-card class="prazos-card">
+    <h2>Prazos próximos</h2>
+    @if (prazosProximos().length === 0) {
+      <p class="prazos-card__vazio">Nenhum prazo nos próximos 14 dias.</p>
+    } @else {
+      <ul class="prazos-card__lista">
+        @for (prazo of prazosProximos(); track prazo.id) {
+          <li>
+            <a routerLink="/prazos">{{ prazo.titulo }}</a>
+            <span class="prazos-card__processo">{{ numeroProcesso(prazo.processoId) }}</span>
+            <app-status-badge [texto]="$any(prazo.dataVencimento | date: 'dd/MM')" [cor]="urgenciaCor(prazo.dataVencimento)" />
+          </li>
+        }
+      </ul>
+    }
+  </mat-card>
+</div>
