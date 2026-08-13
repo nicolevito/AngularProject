@@ -38,6 +38,11 @@ export const routes: Routes = [
         canActivate: [roleGuard(['advogado', 'estagiario'])],
         loadChildren: () => import('./features/agenda/agenda.routes').then((m) => m.AGENDA_ROUTES),
       },
+      {
+        path: 'documentos',
+        canActivate: [roleGuard(['advogado', 'estagiario'])],
+        loadChildren: () => import('./features/documentos/documentos.routes').then((m) => m.DOCUMENTOS_ROUTES),
+      },
     ],
   },
   { path: '**', redirectTo: 'login' },
