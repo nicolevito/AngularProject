@@ -5,6 +5,7 @@
         <mat-icon>arrow_back</mat-icon>
       </a>
       <h1>{{ nomeExibicaoCliente(cliente) }}</h1>
+      <app-status-badge [texto]="STATUS_CLIENTE_LABEL[cliente.status]" [cor]="statusCor(cliente.status)" />
       <span class="cliente-detail-page__spacer"></span>
       <a mat-stroked-button [routerLink]="['/clientes', cliente.id, 'editar']">
         <mat-icon>edit</mat-icon>

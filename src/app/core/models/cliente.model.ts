@@ -1,4 +1,10 @@
 export type TipoPessoa = 'fisica' | 'juridica';
+export type StatusCliente = 'ativo' | 'inativo';
+
+export const STATUS_CLIENTE_LABEL: Record<StatusCliente, string> = {
+  ativo: 'Ativo',
+  inativo: 'Inativo',
+};
 
 export interface Endereco {
   cep: string;
@@ -12,6 +18,7 @@ export interface Endereco {
 
 interface ClienteBase {
   id: string;
+  status: StatusCliente;
   email: string;
   telefone: string;
   endereco: Endereco;

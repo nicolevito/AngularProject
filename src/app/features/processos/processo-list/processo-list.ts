@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -53,15 +53,21 @@ const COR_STATUS: Record<StatusProcesso, 'sucesso' | 'neutro' | 'aviso' | 'info'
 export class ProcessoList {
   private readonly processoService = inject(ProcessoService);
   private readonly clienteService = inject(ClienteService);
+  private readonly route = inject(ActivatedRoute);
 
   readonly processos = this.processoService.processos;
   readonly busca = signal('');
-  readonly statusFiltro = signal<StatusProcesso | ''>('');
+  readonly statusFiltro = signal<StatusProcesso | ''>(this.statusInicialDaRota());
   readonly pagina = signal(0);
   readonly tamanhoPagina = signal(10);
 
   readonly colunas = ['numero', 'cliente', 'area', 'status', 'valorCausa', 'acoes'];
   readonly statusOpcoes = Object.entries(STATUS_PROCESSO_LABEL) as [StatusProcesso, string][];
+
+  private statusInicialDaRota(): StatusProcesso | '' {
+    const status = this.route.snapshot.queryParamMap.get('status');
+    return status && status in STATUS_PROCESSO_LABEL ? (status as StatusProcesso) : '';
+  }
 
   private readonly nomeClientePorId = computed(() => {
     const mapa = new Map<string, string>();

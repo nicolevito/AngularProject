@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -44,10 +44,16 @@ const COR_STATUS: Record<StatusFatura, CorBadge> = {
 export class FaturaList {
   private readonly faturaService = inject(FaturaService);
   private readonly clienteService = inject(ClienteService);
+  private readonly route = inject(ActivatedRoute);
 
-  readonly statusFiltro = signal<StatusFatura | ''>('');
+  readonly statusFiltro = signal<StatusFatura | ''>(this.statusInicialDaRota());
   readonly colunas = ['numero', 'cliente', 'emissao', 'vencimento', 'valor', 'status', 'acoes'];
   readonly statusOpcoes = Object.entries(STATUS_FATURA_LABEL) as [StatusFatura, string][];
+
+  private statusInicialDaRota(): StatusFatura | '' {
+    const status = this.route.snapshot.queryParamMap.get('status');
+    return status && status in STATUS_FATURA_LABEL ? (status as StatusFatura) : '';
+  }
   readonly formasPagamento: FormaPagamento[] = ['pix', 'boleto', 'cartao', 'transferencia'];
 
   private readonly nomeClientePorId = computed(() => {

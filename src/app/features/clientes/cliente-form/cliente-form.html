@@ -14,6 +14,14 @@
         <mat-radio-button value="juridica">Pessoa Jurídica</mat-radio-button>
       </mat-radio-group>
 
+      @if (modoEdicao) {
+        <h2>Situação</h2>
+        <mat-radio-group formControlName="status" class="tipo-radio-group">
+          <mat-radio-button value="ativo">Ativo</mat-radio-button>
+          <mat-radio-button value="inativo">Inativo</mat-radio-button>
+        </mat-radio-group>
+      }
+
       <div formGroupName="dadosEspecificos" class="form-grid">
         @if (tipoAtual() === 'fisica') {
           <mat-form-field appearance="outline">

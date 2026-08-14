@@ -11,9 +11,21 @@
     }
   }
 
+  &__filtros {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
   &__busca {
     width: 100%;
     max-width: 420px;
+  }
+
+  &__status {
+    width: 100%;
+    max-width: 200px;
   }
 
   &__tabela {

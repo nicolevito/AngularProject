@@ -9,8 +9,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClienteService } from '../data-access/cliente.service';
 import { MockDbService } from '../../../core/mock-data/mock-db.service';
 import { CpfCnpjPipe } from '../../../shared/pipes/cpf-cnpj.pipe';
-import { StatusBadge } from '../../../shared/components/status-badge/status-badge';
-import { AREA_DIREITO_LABEL, documentoCliente, nomeExibicaoCliente, STATUS_PROCESSO_LABEL } from '../../../core/models';
+import { StatusBadge, CorBadge } from '../../../shared/components/status-badge/status-badge';
+import {
+  AREA_DIREITO_LABEL,
+  documentoCliente,
+  nomeExibicaoCliente,
+  STATUS_CLIENTE_LABEL,
+  STATUS_PROCESSO_LABEL,
+  StatusCliente,
+} from '../../../core/models';
+
+const COR_STATUS_CLIENTE: Record<StatusCliente, CorBadge> = {
+  ativo: 'sucesso',
+  inativo: 'neutro',
+};
 
 @Component({
   selector: 'app-cliente-detail',
@@ -35,7 +47,12 @@ export class ClienteDetail {
   readonly nomeExibicaoCliente = nomeExibicaoCliente;
   readonly documentoCliente = documentoCliente;
   readonly STATUS_PROCESSO_LABEL = STATUS_PROCESSO_LABEL;
+  readonly STATUS_CLIENTE_LABEL = STATUS_CLIENTE_LABEL;
   readonly AREA_DIREITO_LABEL = AREA_DIREITO_LABEL;
+
+  statusCor(status: StatusCliente): CorBadge {
+    return COR_STATUS_CLIENTE[status];
+  }
 
   excluir(): void {
     const cliente = this.cliente();

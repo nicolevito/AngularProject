@@ -16,7 +16,7 @@ import { CepLookupService } from '../../../shared/services/cep-lookup.service';
 import { cpfValidator } from '../../../shared/validators/cpf.validator';
 import { cnpjValidator } from '../../../shared/validators/cnpj.validator';
 import { cepAsyncValidator } from '../../../shared/validators/cep-async.validator';
-import { Cliente, ClientePF, ClientePJ, TipoPessoa } from '../../../core/models';
+import { Cliente, ClientePF, ClientePJ, StatusCliente, TipoPessoa } from '../../../core/models';
 
 const TELEFONE_PATTERN = /^\(\d{2}\) \d{4,5}-\d{4}$/;
 const CEP_PATTERN = /^\d{5}-?\d{3}$/;
@@ -66,6 +66,7 @@ export class ClienteForm implements OnInit {
 
   readonly form = this.fb.nonNullable.group({
     tipo: this.fb.nonNullable.control<TipoPessoa>('fisica', Validators.required),
+    status: this.fb.nonNullable.control<StatusCliente>('ativo', Validators.required),
     dadosEspecificos: this.fb.nonNullable.group({
       nome: [''],
       cpf: [''],
@@ -180,6 +181,7 @@ export class ClienteForm implements OnInit {
   private preencherFormulario(cliente: Cliente): void {
     this.form.patchValue({
       tipo: cliente.tipo,
+      status: cliente.status,
       email: cliente.email,
       telefone: cliente.telefone,
       endereco: cliente.endereco,
@@ -204,6 +206,7 @@ export class ClienteForm implements OnInit {
   private montarCliente(): Omit<ClientePF, 'id' | 'criadoEm'> | Omit<ClientePJ, 'id' | 'criadoEm'> {
     const valores = this.form.getRawValue();
     const comuns = {
+      status: valores.status,
       email: valores.email,
       telefone: valores.telefone,
       endereco: valores.endereco,

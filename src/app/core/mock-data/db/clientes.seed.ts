@@ -8,6 +8,7 @@ export const CLIENTES_SEED: Cliente[] = [
     cpf: '147.258.369-82',
     dataNascimento: '1985-03-14',
     profissao: 'Engenheiro Civil',
+    status: 'ativo',
     email: 'eduardo.siqueira@cliente.com.br',
     telefone: '(11) 98765-4321',
     endereco: {
@@ -28,6 +29,7 @@ export const CLIENTES_SEED: Cliente[] = [
     cpf: '234.567.890-92',
     dataNascimento: '1990-07-22',
     profissao: 'Médica',
+    status: 'ativo',
     email: 'helena.tavares@cliente.com.br',
     telefone: '(21) 99876-5432',
     endereco: {
@@ -47,6 +49,7 @@ export const CLIENTES_SEED: Cliente[] = [
     cpf: '519.372.486-82',
     dataNascimento: '1978-11-30',
     profissao: 'Comerciante',
+    status: 'inativo',
     email: 'carlos.lima@email.com.br',
     telefone: '(31) 98123-4567',
     endereco: {
@@ -66,6 +69,7 @@ export const CLIENTES_SEED: Cliente[] = [
     nomeFantasia: 'Ferreira Metalúrgica',
     cnpj: '11.223.344/0001-86',
     representanteLegal: 'Antônio Ferreira Neto',
+    status: 'ativo',
     email: 'juridico@ferreirametalurgica.com.br',
     telefone: '(11) 3456-7890',
     endereco: {
@@ -85,6 +89,7 @@ export const CLIENTES_SEED: Cliente[] = [
     nomeFantasia: 'Boa Vista Distribuidora',
     cnpj: '55.667.788/0001-86',
     representanteLegal: 'Márcia Regina Boa Vista',
+    status: 'ativo',
     email: 'contato@boavista.com.br',
     telefone: '(51) 3234-5678',
     endereco: {
@@ -104,6 +109,7 @@ export const CLIENTES_SEED: Cliente[] = [
     cpf: '987.654.321-00',
     dataNascimento: '1995-01-09',
     profissao: 'Designer',
+    status: 'ativo',
     email: 'beatriz.rocha@email.com.br',
     telefone: '(41) 99654-3210',
     endereco: {
@@ -123,6 +129,7 @@ export const CLIENTES_SEED: Cliente[] = [
     nomeFantasia: 'Horizonte Construções',
     cnpj: '99.887.766/0001-05',
     representanteLegal: 'Paulo Ricardo Horizonte',
+    status: 'ativo',
     email: 'juridico@horizonteconstrucoes.com.br',
     telefone: '(85) 3345-6789',
     endereco: {
@@ -142,6 +149,7 @@ export const CLIENTES_SEED: Cliente[] = [
     cpf: '334.455.667-39',
     dataNascimento: '1968-05-17',
     profissao: 'Aposentado',
+    status: 'inativo',
     email: 'fernando.pires@email.com.br',
     telefone: '(19) 98234-5678',
     endereco: {
@@ -161,6 +169,7 @@ export const CLIENTES_SEED: Cliente[] = [
     nomeFantasia: 'Tech Solutions',
     cnpj: '22.334.455/0001-86',
     representanteLegal: 'Camila Duarte Nogueira',
+    status: 'ativo',
     email: 'juridico@techsolutions.com.br',
     telefone: '(11) 4002-8922',
     endereco: {
@@ -180,6 +189,7 @@ export const CLIENTES_SEED: Cliente[] = [
     cpf: '778.899.112-03',
     dataNascimento: '2001-09-25',
     profissao: 'Estudante',
+    status: 'ativo',
     email: 'camila.ribeiro@email.com.br',
     telefone: '(48) 99123-4567',
     endereco: {

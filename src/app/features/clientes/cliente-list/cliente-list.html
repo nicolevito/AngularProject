@@ -7,11 +7,23 @@
     </a>
   </div>
 
-  <mat-form-field appearance="outline" class="cliente-list-page__busca">
-    <mat-label>Buscar por nome, documento ou e-mail</mat-label>
-    <input matInput [value]="busca()" (input)="buscar($any($event.target).value)" />
-    <mat-icon matPrefix>search</mat-icon>
-  </mat-form-field>
+  <div class="cliente-list-page__filtros">
+    <mat-form-field appearance="outline" class="cliente-list-page__busca">
+      <mat-label>Buscar por nome, documento ou e-mail</mat-label>
+      <input matInput [value]="busca()" (input)="buscar($any($event.target).value)" />
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="cliente-list-page__status">
+      <mat-label>Situação</mat-label>
+      <mat-select [value]="statusFiltro()" (selectionChange)="filtrarStatus($event.value)">
+        <mat-option value="">Todas</mat-option>
+        @for (opcao of statusOpcoes; track opcao[0]) {
+          <mat-option [value]="opcao[0]">{{ opcao[1] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   @if (filtrados().length === 0) {
     <app-empty-state
@@ -50,6 +62,13 @@
       <ng-container matColumnDef="cidade">
         <th mat-header-cell *matHeaderCellDef>Cidade/UF</th>
         <td mat-cell *matCellDef="let cliente">{{ cliente.endereco.cidade }}/{{ cliente.endereco.uf }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Situação</th>
+        <td mat-cell *matCellDef="let cliente">
+          <app-status-badge [texto]="statusLabel(cliente.status)" [cor]="statusCor(cliente.status)" />
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="acoes">
