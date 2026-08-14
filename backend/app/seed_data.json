@@ -1,0 +1,1848 @@
+{
+  "usuarios": [
+    {
+      "id": "usr-1",
+      "nome": "Marina Costa Alvarenga",
+      "email": "marina.alvarenga@advocacia.com.br",
+      "senha": "123456",
+      "role": "advogado",
+      "ativo": true
+    },
+    {
+      "id": "usr-2",
+      "nome": "Rafael Nogueira Bittencourt",
+      "email": "rafael.bittencourt@advocacia.com.br",
+      "senha": "123456",
+      "role": "advogado",
+      "ativo": true
+    },
+    {
+      "id": "usr-3",
+      "nome": "Juliana Prado Menezes",
+      "email": "juliana.menezes@advocacia.com.br",
+      "senha": "123456",
+      "role": "estagiario",
+      "ativo": true
+    },
+    {
+      "id": "usr-4",
+      "nome": "Thiago Ramos Falcão",
+      "email": "thiago.falcao@advocacia.com.br",
+      "senha": "123456",
+      "role": "estagiario",
+      "ativo": true
+    },
+    {
+      "id": "usr-5",
+      "nome": "Eduardo Martins Siqueira",
+      "email": "eduardo.siqueira@cliente.com.br",
+      "senha": "123456",
+      "role": "cliente",
+      "clienteId": "cli-1",
+      "ativo": true
+    },
+    {
+      "id": "usr-6",
+      "nome": "Helena Vasconcelos Tavares",
+      "email": "helena.tavares@cliente.com.br",
+      "senha": "123456",
+      "role": "cliente",
+      "clienteId": "cli-2",
+      "ativo": true
+    },
+    {
+      "id": "usr-7",
+      "nome": "Comercial Boa Vista Ltda",
+      "email": "contato@boavista.com.br",
+      "senha": "123456",
+      "role": "cliente",
+      "clienteId": "cli-5",
+      "ativo": true
+    }
+  ],
+  "clientes": [
+    {
+      "id": "cli-1",
+      "tipo": "fisica",
+      "nome": "Eduardo Martins Siqueira",
+      "cpf": "147.258.369-82",
+      "dataNascimento": "1985-03-14",
+      "profissao": "Engenheiro Civil",
+      "status": "ativo",
+      "email": "eduardo.siqueira@cliente.com.br",
+      "telefone": "(11) 98765-4321",
+      "endereco": {
+        "cep": "01311-000",
+        "logradouro": "Av. Paulista",
+        "numero": "1578",
+        "complemento": "Apto 92",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "uf": "SP"
+      },
+      "criadoEm": "2023-02-10T10:00:00Z"
+    },
+    {
+      "id": "cli-2",
+      "tipo": "fisica",
+      "nome": "Helena Vasconcelos Tavares",
+      "cpf": "234.567.890-92",
+      "dataNascimento": "1990-07-22",
+      "profissao": "Médica",
+      "status": "ativo",
+      "email": "helena.tavares@cliente.com.br",
+      "telefone": "(21) 99876-5432",
+      "endereco": {
+        "cep": "22071-900",
+        "logradouro": "Av. Atlântica",
+        "numero": "2020",
+        "bairro": "Copacabana",
+        "cidade": "Rio de Janeiro",
+        "uf": "RJ"
+      },
+      "criadoEm": "2023-04-05T10:00:00Z"
+    },
+    {
+      "id": "cli-3",
+      "tipo": "fisica",
+      "nome": "Carlos Eduardo Lima",
+      "cpf": "519.372.486-82",
+      "dataNascimento": "1978-11-30",
+      "profissao": "Comerciante",
+      "status": "inativo",
+      "email": "carlos.lima@email.com.br",
+      "telefone": "(31) 98123-4567",
+      "endereco": {
+        "cep": "30130-010",
+        "logradouro": "Rua da Bahia",
+        "numero": "845",
+        "bairro": "Centro",
+        "cidade": "Belo Horizonte",
+        "uf": "MG"
+      },
+      "criadoEm": "2023-05-18T10:00:00Z"
+    },
+    {
+      "id": "cli-4",
+      "tipo": "juridica",
+      "razaoSocial": "Indústria Ferreira e Souza S.A.",
+      "nomeFantasia": "Ferreira Metalúrgica",
+      "cnpj": "11.223.344/0001-86",
+      "representanteLegal": "Antônio Ferreira Neto",
+      "status": "ativo",
+      "email": "juridico@ferreirametalurgica.com.br",
+      "telefone": "(11) 3456-7890",
+      "endereco": {
+        "cep": "04571-000",
+        "logradouro": "Av. Engenheiro Luís Carlos Berrini",
+        "numero": "1500",
+        "bairro": "Brooklin",
+        "cidade": "São Paulo",
+        "uf": "SP"
+      },
+      "criadoEm": "2022-09-12T10:00:00Z"
+    },
+    {
+      "id": "cli-5",
+      "tipo": "juridica",
+      "razaoSocial": "Comercial Boa Vista Ltda",
+      "nomeFantasia": "Boa Vista Distribuidora",
+      "cnpj": "55.667.788/0001-86",
+      "representanteLegal": "Márcia Regina Boa Vista",
+      "status": "ativo",
+      "email": "contato@boavista.com.br",
+      "telefone": "(51) 3234-5678",
+      "endereco": {
+        "cep": "90010-000",
+        "logradouro": "Rua dos Andradas",
+        "numero": "410",
+        "bairro": "Centro Histórico",
+        "cidade": "Porto Alegre",
+        "uf": "RS"
+      },
+      "criadoEm": "2023-01-25T10:00:00Z"
+    },
+    {
+      "id": "cli-6",
+      "tipo": "fisica",
+      "nome": "Beatriz Almeida Rocha",
+      "cpf": "987.654.321-00",
+      "dataNascimento": "1995-01-09",
+      "profissao": "Designer",
+      "status": "ativo",
+      "email": "beatriz.rocha@email.com.br",
+      "telefone": "(41) 99654-3210",
+      "endereco": {
+        "cep": "80010-000",
+        "logradouro": "Rua XV de Novembro",
+        "numero": "700",
+        "bairro": "Centro",
+        "cidade": "Curitiba",
+        "uf": "PR"
+      },
+      "criadoEm": "2023-06-30T10:00:00Z"
+    },
+    {
+      "id": "cli-7",
+      "tipo": "juridica",
+      "razaoSocial": "Construtora Horizonte Ltda",
+      "nomeFantasia": "Horizonte Construções",
+      "cnpj": "99.887.766/0001-05",
+      "representanteLegal": "Paulo Ricardo Horizonte",
+      "status": "ativo",
+      "email": "juridico@horizonteconstrucoes.com.br",
+      "telefone": "(85) 3345-6789",
+      "endereco": {
+        "cep": "60165-121",
+        "logradouro": "Av. Beira Mar",
+        "numero": "3000",
+        "bairro": "Meireles",
+        "cidade": "Fortaleza",
+        "uf": "CE"
+      },
+      "criadoEm": "2022-11-08T10:00:00Z"
+    },
+    {
+      "id": "cli-8",
+      "tipo": "fisica",
+      "nome": "Fernando Augusto Pires",
+      "cpf": "334.455.667-39",
+      "dataNascimento": "1968-05-17",
+      "profissao": "Aposentado",
+      "status": "inativo",
+      "email": "fernando.pires@email.com.br",
+      "telefone": "(19) 98234-5678",
+      "endereco": {
+        "cep": "13010-001",
+        "logradouro": "Av. Francisco Glicério",
+        "numero": "120",
+        "bairro": "Centro",
+        "cidade": "Campinas",
+        "uf": "SP"
+      },
+      "criadoEm": "2023-03-02T10:00:00Z"
+    },
+    {
+      "id": "cli-9",
+      "tipo": "juridica",
+      "razaoSocial": "Tech Solutions Informática Ltda",
+      "nomeFantasia": "Tech Solutions",
+      "cnpj": "22.334.455/0001-86",
+      "representanteLegal": "Camila Duarte Nogueira",
+      "status": "ativo",
+      "email": "juridico@techsolutions.com.br",
+      "telefone": "(11) 4002-8922",
+      "endereco": {
+        "cep": "05426-100",
+        "logradouro": "Av. Faria Lima",
+        "numero": "3477",
+        "bairro": "Itaim Bibi",
+        "cidade": "São Paulo",
+        "uf": "SP"
+      },
+      "criadoEm": "2023-07-14T10:00:00Z"
+    },
+    {
+      "id": "cli-10",
+      "tipo": "fisica",
+      "nome": "Camila Souza Ribeiro",
+      "cpf": "778.899.112-03",
+      "dataNascimento": "2001-09-25",
+      "profissao": "Estudante",
+      "status": "ativo",
+      "email": "camila.ribeiro@email.com.br",
+      "telefone": "(48) 99123-4567",
+      "endereco": {
+        "cep": "88010-400",
+        "logradouro": "Rua Felipe Schmidt",
+        "numero": "200",
+        "bairro": "Centro",
+        "cidade": "Florianópolis",
+        "uf": "SC"
+      },
+      "criadoEm": "2023-08-21T10:00:00Z"
+    }
+  ],
+  "processos": [
+    {
+      "id": "proc-1",
+      "numeroProcesso": "0001234-56.2023.8.26.0100",
+      "clienteId": "cli-1",
+      "advogadoResponsavelId": "usr-1",
+      "area": "civel",
+      "status": "ativo",
+      "vara": "3ª Vara Cível",
+      "comarca": "São Paulo/SP",
+      "valorCausa": 85000,
+      "dataAbertura": "2023-03-02",
+      "partes": [
+        {
+          "id": "proc-1-p1",
+          "nome": "Eduardo Martins Siqueira",
+          "tipo": "autor",
+          "documento": "147.258.369-82"
+        },
+        {
+          "id": "proc-1-p2",
+          "nome": "Construtora Vale Verde Ltda",
+          "tipo": "reu",
+          "documento": "33.444.555/0001-90"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-1-a1",
+          "data": "2023-03-05",
+          "descricao": "Petição inicial protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-1"
+        },
+        {
+          "id": "proc-1-a2",
+          "data": "2023-06-18",
+          "descricao": "Audiência de conciliação designada.",
+          "tipo": "audiencia_marcada",
+          "autorId": "usr-3"
+        }
+      ],
+      "documentoIds": [
+        "doc-1",
+        "doc-2"
+      ],
+      "observacoes": "Ação de indenização por vício de construção."
+    },
+    {
+      "id": "proc-2",
+      "numeroProcesso": "0002345-67.2023.5.02.0030",
+      "clienteId": "cli-2",
+      "advogadoResponsavelId": "usr-2",
+      "area": "trabalhista",
+      "status": "ativo",
+      "vara": "30ª Vara do Trabalho",
+      "comarca": "Rio de Janeiro/RJ",
+      "valorCausa": 42000,
+      "dataAbertura": "2023-05-10",
+      "partes": [
+        {
+          "id": "proc-2-p1",
+          "nome": "Helena Vasconcelos Tavares",
+          "tipo": "autor",
+          "documento": "234.567.890-92"
+        },
+        {
+          "id": "proc-2-p2",
+          "nome": "Clínica Saúde Total Ltda",
+          "tipo": "reu",
+          "documento": "22.111.000/0001-45"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-2-a1",
+          "data": "2023-05-12",
+          "descricao": "Reclamação trabalhista distribuída.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        },
+        {
+          "id": "proc-2-a2",
+          "data": "2023-09-01",
+          "descricao": "Contestação apresentada pela ré.",
+          "tipo": "movimentacao",
+          "autorId": "usr-4"
+        }
+      ],
+      "documentoIds": [
+        "doc-3"
+      ],
+      "observacoes": "Verbas rescisórias não pagas."
+    },
+    {
+      "id": "proc-3",
+      "numeroProcesso": "0003456-78.2022.8.19.0001",
+      "clienteId": "cli-3",
+      "advogadoResponsavelId": "usr-1",
+      "area": "penal",
+      "status": "em_recurso",
+      "vara": "2ª Vara Criminal",
+      "comarca": "Belo Horizonte/MG",
+      "valorCausa": 0,
+      "dataAbertura": "2022-08-20",
+      "partes": [
+        {
+          "id": "proc-3-p1",
+          "nome": "Ministério Público",
+          "tipo": "autor",
+          "documento": "00.000.000/0001-00"
+        },
+        {
+          "id": "proc-3-p2",
+          "nome": "Carlos Eduardo Lima",
+          "tipo": "reu",
+          "documento": "519.372.486-82"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-3-a1",
+          "data": "2022-09-15",
+          "descricao": "Sentença condenatória proferida.",
+          "tipo": "sentenca",
+          "autorId": "usr-1"
+        },
+        {
+          "id": "proc-3-a2",
+          "data": "2023-01-10",
+          "descricao": "Recurso de apelação interposto.",
+          "tipo": "peticao",
+          "autorId": "usr-1"
+        }
+      ],
+      "documentoIds": [
+        "doc-4",
+        "doc-5"
+      ]
+    },
+    {
+      "id": "proc-4",
+      "numeroProcesso": "0004567-89.2023.8.26.0100",
+      "clienteId": "cli-4",
+      "advogadoResponsavelId": "usr-2",
+      "area": "empresarial",
+      "status": "ativo",
+      "vara": "1ª Vara Empresarial",
+      "comarca": "São Paulo/SP",
+      "valorCausa": 320000,
+      "dataAbertura": "2023-01-18",
+      "partes": [
+        {
+          "id": "proc-4-p1",
+          "nome": "Indústria Ferreira e Souza S.A.",
+          "tipo": "autor",
+          "documento": "11.223.344/0001-86"
+        },
+        {
+          "id": "proc-4-p2",
+          "nome": "Metalúrgica Aço Forte Ltda",
+          "tipo": "reu",
+          "documento": "44.555.666/0001-21"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-4-a1",
+          "data": "2023-01-20",
+          "descricao": "Ação de rescisão contratual protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        }
+      ],
+      "documentoIds": [
+        "doc-6"
+      ],
+      "observacoes": "Descumprimento de contrato de fornecimento."
+    },
+    {
+      "id": "proc-5",
+      "numeroProcesso": "0005678-90.2023.8.26.0100",
+      "clienteId": "cli-4",
+      "advogadoResponsavelId": "usr-1",
+      "area": "tributario",
+      "status": "suspenso",
+      "vara": "Vara da Fazenda Pública",
+      "comarca": "São Paulo/SP",
+      "valorCausa": 610000,
+      "dataAbertura": "2023-04-11",
+      "partes": [
+        {
+          "id": "proc-5-p1",
+          "nome": "Indústria Ferreira e Souza S.A.",
+          "tipo": "autor",
+          "documento": "11.223.344/0001-86"
+        },
+        {
+          "id": "proc-5-p2",
+          "nome": "Fazenda Pública do Estado de São Paulo",
+          "tipo": "reu",
+          "documento": "46.522.630/0001-01"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-5-a1",
+          "data": "2023-04-15",
+          "descricao": "Mandado de segurança impetrado.",
+          "tipo": "peticao",
+          "autorId": "usr-1"
+        },
+        {
+          "id": "proc-5-a2",
+          "data": "2023-10-02",
+          "descricao": "Processo suspenso aguardando perícia.",
+          "tipo": "movimentacao",
+          "autorId": "usr-1"
+        }
+      ],
+      "documentoIds": [],
+      "observacoes": "Discussão sobre incidência de ICMS."
+    },
+    {
+      "id": "proc-6",
+      "numeroProcesso": "0006789-01.2024.8.21.0001",
+      "clienteId": "cli-5",
+      "advogadoResponsavelId": "usr-2",
+      "area": "civel",
+      "status": "ativo",
+      "vara": "5ª Vara Cível",
+      "comarca": "Porto Alegre/RS",
+      "valorCausa": 58000,
+      "dataAbertura": "2024-02-06",
+      "partes": [
+        {
+          "id": "proc-6-p1",
+          "nome": "Comercial Boa Vista Ltda",
+          "tipo": "autor",
+          "documento": "55.667.788/0001-86"
+        },
+        {
+          "id": "proc-6-p2",
+          "nome": "Transportadora Rio Grande Ltda",
+          "tipo": "reu",
+          "documento": "66.777.888/0001-32"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-6-a1",
+          "data": "2024-02-08",
+          "descricao": "Ação de cobrança protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        }
+      ],
+      "documentoIds": [
+        "doc-7"
+      ]
+    },
+    {
+      "id": "proc-7",
+      "numeroProcesso": "0007890-12.2022.8.26.0100",
+      "clienteId": "cli-5",
+      "advogadoResponsavelId": "usr-1",
+      "area": "empresarial",
+      "status": "encerrado",
+      "vara": "2ª Vara Empresarial",
+      "comarca": "São Paulo/SP",
+      "valorCausa": 150000,
+      "dataAbertura": "2022-03-14",
+      "partes": [
+        {
+          "id": "proc-7-p1",
+          "nome": "Comercial Boa Vista Ltda",
+          "tipo": "reu",
+          "documento": "55.667.788/0001-86"
+        },
+        {
+          "id": "proc-7-p2",
+          "nome": "Distribuidora Nacional S.A.",
+          "tipo": "autor",
+          "documento": "77.888.999/0001-14"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-7-a1",
+          "data": "2022-03-20",
+          "descricao": "Contestação apresentada.",
+          "tipo": "peticao",
+          "autorId": "usr-1"
+        },
+        {
+          "id": "proc-7-a2",
+          "data": "2022-12-01",
+          "descricao": "Sentença de improcedência transitada em julgado.",
+          "tipo": "sentenca",
+          "autorId": "usr-1"
+        }
+      ],
+      "documentoIds": [
+        "doc-8"
+      ]
+    },
+    {
+      "id": "proc-8",
+      "numeroProcesso": "0008901-23.2023.8.24.0001",
+      "clienteId": "cli-6",
+      "advogadoResponsavelId": "usr-2",
+      "area": "familia",
+      "status": "ativo",
+      "vara": "Vara de Família",
+      "comarca": "Curitiba/PR",
+      "valorCausa": 12000,
+      "dataAbertura": "2023-09-04",
+      "partes": [
+        {
+          "id": "proc-8-p1",
+          "nome": "Beatriz Almeida Rocha",
+          "tipo": "autor",
+          "documento": "987.654.321-00"
+        },
+        {
+          "id": "proc-8-p2",
+          "nome": "Rodrigo Almeida Rocha",
+          "tipo": "reu",
+          "documento": "111.222.333-44"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-8-a1",
+          "data": "2023-09-06",
+          "descricao": "Ação de divórcio litigioso protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        },
+        {
+          "id": "proc-8-a2",
+          "data": "2024-01-15",
+          "descricao": "Audiência de instrução designada.",
+          "tipo": "audiencia_marcada",
+          "autorId": "usr-4"
+        }
+      ],
+      "documentoIds": []
+    },
+    {
+      "id": "proc-9",
+      "numeroProcesso": "0009012-34.2023.8.06.0001",
+      "clienteId": "cli-7",
+      "advogadoResponsavelId": "usr-1",
+      "area": "civel",
+      "status": "ativo",
+      "vara": "4ª Vara Cível",
+      "comarca": "Fortaleza/CE",
+      "valorCausa": 275000,
+      "dataAbertura": "2023-06-22",
+      "partes": [
+        {
+          "id": "proc-9-p1",
+          "nome": "Construtora Horizonte Ltda",
+          "tipo": "autor",
+          "documento": "99.887.766/0001-05"
+        },
+        {
+          "id": "proc-9-p2",
+          "nome": "Incorporadora Litoral S.A.",
+          "tipo": "reu",
+          "documento": "88.999.000/0001-27"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-9-a1",
+          "data": "2023-06-25",
+          "descricao": "Ação de cobrança de aditivo contratual.",
+          "tipo": "peticao",
+          "autorId": "usr-1"
+        }
+      ],
+      "documentoIds": [
+        "doc-9"
+      ]
+    },
+    {
+      "id": "proc-10",
+      "numeroProcesso": "0009123-45.2024.8.06.0001",
+      "clienteId": "cli-7",
+      "advogadoResponsavelId": "usr-2",
+      "area": "tributario",
+      "status": "ativo",
+      "vara": "Vara da Fazenda Pública",
+      "comarca": "Fortaleza/CE",
+      "valorCausa": 190000,
+      "dataAbertura": "2024-01-09",
+      "partes": [
+        {
+          "id": "proc-10-p1",
+          "nome": "Construtora Horizonte Ltda",
+          "tipo": "autor",
+          "documento": "99.887.766/0001-05"
+        },
+        {
+          "id": "proc-10-p2",
+          "nome": "Município de Fortaleza",
+          "tipo": "reu",
+          "documento": "07.954.605/0001-60"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-10-a1",
+          "data": "2024-01-12",
+          "descricao": "Ação anulatória de débito fiscal protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        }
+      ],
+      "documentoIds": []
+    },
+    {
+      "id": "proc-11",
+      "numeroProcesso": "0009234-56.2021.8.26.0100",
+      "clienteId": "cli-8",
+      "advogadoResponsavelId": "usr-1",
+      "area": "civel",
+      "status": "arquivado",
+      "vara": "6ª Vara Cível",
+      "comarca": "Campinas/SP",
+      "valorCausa": 30000,
+      "dataAbertura": "2021-05-03",
+      "partes": [
+        {
+          "id": "proc-11-p1",
+          "nome": "Fernando Augusto Pires",
+          "tipo": "autor",
+          "documento": "334.455.667-39"
+        },
+        {
+          "id": "proc-11-p2",
+          "nome": "Seguradora Proteção Total S.A.",
+          "tipo": "reu",
+          "documento": "10.203.040/0001-56"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-11-a1",
+          "data": "2021-05-06",
+          "descricao": "Ação de cobrança de seguro protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-1"
+        },
+        {
+          "id": "proc-11-a2",
+          "data": "2021-11-20",
+          "descricao": "Processo arquivado por desistência.",
+          "tipo": "movimentacao",
+          "autorId": "usr-1"
+        }
+      ],
+      "documentoIds": []
+    },
+    {
+      "id": "proc-12",
+      "numeroProcesso": "0009345-67.2022.8.26.0100",
+      "clienteId": "cli-8",
+      "advogadoResponsavelId": "usr-2",
+      "area": "familia",
+      "status": "encerrado",
+      "vara": "Vara de Família",
+      "comarca": "Campinas/SP",
+      "valorCausa": 8000,
+      "dataAbertura": "2022-02-14",
+      "partes": [
+        {
+          "id": "proc-12-p1",
+          "nome": "Fernando Augusto Pires",
+          "tipo": "autor",
+          "documento": "334.455.667-39"
+        },
+        {
+          "id": "proc-12-p2",
+          "nome": "Espólio de Maria Pires",
+          "tipo": "terceiro_interessado",
+          "documento": "20.304.050/0001-11"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-12-a1",
+          "data": "2022-02-16",
+          "descricao": "Ação de inventário protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        },
+        {
+          "id": "proc-12-a2",
+          "data": "2023-05-30",
+          "descricao": "Partilha homologada por sentença.",
+          "tipo": "sentenca",
+          "autorId": "usr-2"
+        }
+      ],
+      "documentoIds": [
+        "doc-10"
+      ]
+    },
+    {
+      "id": "proc-13",
+      "numeroProcesso": "0009456-78.2023.8.26.0100",
+      "clienteId": "cli-9",
+      "advogadoResponsavelId": "usr-1",
+      "area": "empresarial",
+      "status": "ativo",
+      "vara": "3ª Vara Empresarial",
+      "comarca": "São Paulo/SP",
+      "valorCausa": 420000,
+      "dataAbertura": "2023-10-05",
+      "partes": [
+        {
+          "id": "proc-13-p1",
+          "nome": "Tech Solutions Informática Ltda",
+          "tipo": "autor",
+          "documento": "22.334.455/0001-86"
+        },
+        {
+          "id": "proc-13-p2",
+          "nome": "DataCore Sistemas Ltda",
+          "tipo": "reu",
+          "documento": "33.222.111/0001-09"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-13-a1",
+          "data": "2023-10-08",
+          "descricao": "Ação de propriedade intelectual protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-1"
+        }
+      ],
+      "documentoIds": [
+        "doc-11"
+      ],
+      "observacoes": "Disputa sobre uso indevido de código-fonte."
+    },
+    {
+      "id": "proc-14",
+      "numeroProcesso": "0009567-89.2023.8.26.0100",
+      "clienteId": "cli-9",
+      "advogadoResponsavelId": "usr-2",
+      "area": "tributario",
+      "status": "em_recurso",
+      "vara": "Vara da Fazenda Pública",
+      "comarca": "São Paulo/SP",
+      "valorCausa": 95000,
+      "dataAbertura": "2023-02-27",
+      "partes": [
+        {
+          "id": "proc-14-p1",
+          "nome": "Tech Solutions Informática Ltda",
+          "tipo": "autor",
+          "documento": "22.334.455/0001-86"
+        },
+        {
+          "id": "proc-14-p2",
+          "nome": "União Federal",
+          "tipo": "reu",
+          "documento": "00.394.460/0001-41"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-14-a1",
+          "data": "2023-03-01",
+          "descricao": "Ação declaratória de inexistência de débito.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        },
+        {
+          "id": "proc-14-a2",
+          "data": "2024-04-18",
+          "descricao": "Recurso especial interposto.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        }
+      ],
+      "documentoIds": []
+    },
+    {
+      "id": "proc-15",
+      "numeroProcesso": "0009678-90.2024.8.24.0023",
+      "clienteId": "cli-10",
+      "advogadoResponsavelId": "usr-1",
+      "area": "civel",
+      "status": "ativo",
+      "vara": "2ª Vara Cível",
+      "comarca": "Florianópolis/SC",
+      "valorCausa": 21000,
+      "dataAbertura": "2024-05-13",
+      "partes": [
+        {
+          "id": "proc-15-p1",
+          "nome": "Camila Souza Ribeiro",
+          "tipo": "autor",
+          "documento": "778.899.112-03"
+        },
+        {
+          "id": "proc-15-p2",
+          "nome": "Companhia Aérea Voe Brasil S.A.",
+          "tipo": "reu",
+          "documento": "40.500.600/0001-77"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-15-a1",
+          "data": "2024-05-15",
+          "descricao": "Ação por danos morais protocolada.",
+          "tipo": "peticao",
+          "autorId": "usr-1"
+        }
+      ],
+      "documentoIds": [
+        "doc-12"
+      ],
+      "observacoes": "Cancelamento de voo sem assistência."
+    },
+    {
+      "id": "proc-16",
+      "numeroProcesso": "0009789-01.2023.5.02.0030",
+      "clienteId": "cli-1",
+      "advogadoResponsavelId": "usr-2",
+      "area": "trabalhista",
+      "status": "suspenso",
+      "vara": "12ª Vara do Trabalho",
+      "comarca": "São Paulo/SP",
+      "valorCausa": 67000,
+      "dataAbertura": "2023-11-20",
+      "partes": [
+        {
+          "id": "proc-16-p1",
+          "nome": "Eduardo Martins Siqueira",
+          "tipo": "reu",
+          "documento": "147.258.369-82"
+        },
+        {
+          "id": "proc-16-p2",
+          "nome": "Vitor Hugo Andrade",
+          "tipo": "autor",
+          "documento": "155.266.377-48"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "proc-16-a1",
+          "data": "2023-11-22",
+          "descricao": "Reclamação trabalhista recebida.",
+          "tipo": "peticao",
+          "autorId": "usr-2"
+        },
+        {
+          "id": "proc-16-a2",
+          "data": "2024-03-10",
+          "descricao": "Processo suspenso para tentativa de acordo extrajudicial.",
+          "tipo": "movimentacao",
+          "autorId": "usr-2"
+        }
+      ],
+      "documentoIds": []
+    }
+  ],
+  "prazos": [
+    {
+      "id": "prz-1",
+      "processoId": "proc-1",
+      "titulo": "Réplica à contestação",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-08-14",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-2",
+      "processoId": "proc-1",
+      "titulo": "Comparecimento à audiência de conciliação",
+      "tipo": "audiencia",
+      "dataVencimento": "2026-08-25",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-3",
+      "processoId": "proc-2",
+      "titulo": "Impugnação à contestação",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-08-15",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-4",
+      "processoId": "proc-2",
+      "titulo": "Apresentação de rol de testemunhas",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-09-10",
+      "responsavelId": "usr-4",
+      "concluido": false
+    },
+    {
+      "id": "prz-5",
+      "processoId": "proc-3",
+      "titulo": "Razões de apelação",
+      "tipo": "recurso",
+      "dataVencimento": "2026-08-17",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-6",
+      "processoId": "proc-4",
+      "titulo": "Contrarrazões",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-08-18",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-7",
+      "processoId": "proc-4",
+      "titulo": "Juntada de laudo pericial",
+      "tipo": "outro",
+      "dataVencimento": "2026-09-20",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-8",
+      "processoId": "proc-5",
+      "titulo": "Manifestação sobre laudo fiscal",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-08-21",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-9",
+      "processoId": "proc-6",
+      "titulo": "Pagamento de custas processuais",
+      "tipo": "pagamento",
+      "dataVencimento": "2026-08-22",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-10",
+      "processoId": "proc-6",
+      "titulo": "Contestação do réu (acompanhar)",
+      "tipo": "contestacao",
+      "dataVencimento": "2026-10-01",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-11",
+      "processoId": "proc-8",
+      "titulo": "Comparecimento à audiência de instrução",
+      "tipo": "audiencia",
+      "dataVencimento": "2026-08-14",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-12",
+      "processoId": "proc-8",
+      "titulo": "Entrega de proposta de partilha de bens",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-08-28",
+      "responsavelId": "usr-4",
+      "concluido": false
+    },
+    {
+      "id": "prz-13",
+      "processoId": "proc-9",
+      "titulo": "Réplica à contestação",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-08-19",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-14",
+      "processoId": "proc-10",
+      "titulo": "Recurso administrativo fiscal",
+      "tipo": "recurso",
+      "dataVencimento": "2026-09-05",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-15",
+      "processoId": "proc-13",
+      "titulo": "Contestação da parte ré (acompanhar)",
+      "tipo": "contestacao",
+      "dataVencimento": "2026-08-16",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-16",
+      "processoId": "proc-13",
+      "titulo": "Perícia técnica em sistemas",
+      "tipo": "outro",
+      "dataVencimento": "2026-09-30",
+      "responsavelId": "usr-3",
+      "concluido": false
+    },
+    {
+      "id": "prz-17",
+      "processoId": "proc-14",
+      "titulo": "Razões de recurso especial",
+      "tipo": "recurso",
+      "dataVencimento": "2026-08-20",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-18",
+      "processoId": "proc-15",
+      "titulo": "Réplica à contestação da companhia aérea",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-08-27",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-19",
+      "processoId": "proc-16",
+      "titulo": "Manifestação sobre proposta de acordo",
+      "tipo": "manifestacao",
+      "dataVencimento": "2026-08-24",
+      "responsavelId": "usr-2",
+      "concluido": false
+    },
+    {
+      "id": "prz-20",
+      "processoId": "proc-9",
+      "titulo": "Pagamento de honorários periciais",
+      "tipo": "pagamento",
+      "dataVencimento": "2026-10-15",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-21",
+      "processoId": "proc-1",
+      "titulo": "Protocolo de petição inicial",
+      "tipo": "outro",
+      "dataVencimento": "2023-03-05",
+      "responsavelId": "usr-1",
+      "concluido": true,
+      "dataConclusao": "2023-03-05"
+    },
+    {
+      "id": "prz-22",
+      "processoId": "proc-2",
+      "titulo": "Distribuição da reclamação trabalhista",
+      "tipo": "outro",
+      "dataVencimento": "2023-05-10",
+      "responsavelId": "usr-2",
+      "concluido": true,
+      "dataConclusao": "2023-05-09"
+    },
+    {
+      "id": "prz-23",
+      "processoId": "proc-7",
+      "titulo": "Contestação apresentada",
+      "tipo": "contestacao",
+      "dataVencimento": "2022-03-20",
+      "responsavelId": "usr-1",
+      "concluido": true,
+      "dataConclusao": "2022-03-19"
+    },
+    {
+      "id": "prz-24",
+      "processoId": "proc-12",
+      "titulo": "Homologação de partilha",
+      "tipo": "outro",
+      "dataVencimento": "2023-05-30",
+      "responsavelId": "usr-2",
+      "concluido": true,
+      "dataConclusao": "2023-05-28"
+    },
+    {
+      "id": "prz-25",
+      "processoId": "proc-3",
+      "titulo": "Pagamento de custas recursais",
+      "tipo": "pagamento",
+      "dataVencimento": "2026-08-05",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-26",
+      "processoId": "proc-11",
+      "titulo": "Manifestação sobre desistência",
+      "tipo": "manifestacao",
+      "dataVencimento": "2021-11-18",
+      "responsavelId": "usr-1",
+      "concluido": true,
+      "dataConclusao": "2021-11-17"
+    },
+    {
+      "id": "prz-27",
+      "processoId": "proc-5",
+      "titulo": "Comparecimento à perícia técnica",
+      "tipo": "audiencia",
+      "dataVencimento": "2026-09-12",
+      "responsavelId": "usr-1",
+      "concluido": false
+    },
+    {
+      "id": "prz-28",
+      "processoId": "proc-10",
+      "titulo": "Juntada de guias de recolhimento",
+      "tipo": "outro",
+      "dataVencimento": "2026-08-15",
+      "responsavelId": "usr-2",
+      "concluido": false
+    }
+  ],
+  "documentos": [
+    {
+      "id": "doc-1",
+      "processoId": "proc-1",
+      "nome": "Petição Inicial - Ação de Indenização.pdf",
+      "tipo": "peticao",
+      "tamanhoBytes": 482300,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2023-03-02T10:12:00Z",
+          "usuarioId": "usr-1"
+        }
+      ],
+      "uploadPor": "usr-1",
+      "criadoEm": "2023-03-02T10:12:00Z"
+    },
+    {
+      "id": "doc-2",
+      "processoId": "proc-1",
+      "nome": "Procuração - Eduardo Siqueira.pdf",
+      "tipo": "procuracao",
+      "tamanhoBytes": 98450,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2023-03-02T10:05:00Z",
+          "usuarioId": "usr-1"
+        }
+      ],
+      "uploadPor": "usr-1",
+      "criadoEm": "2023-03-02T10:05:00Z"
+    },
+    {
+      "id": "doc-3",
+      "processoId": "proc-2",
+      "nome": "Contrato de Trabalho - Helena Tavares.pdf",
+      "tipo": "contrato",
+      "tamanhoBytes": 210880,
+      "versao": 2,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2023-05-10T09:00:00Z",
+          "usuarioId": "usr-2"
+        },
+        {
+          "versao": 2,
+          "dataUpload": "2023-05-14T11:30:00Z",
+          "usuarioId": "usr-4"
+        }
+      ],
+      "uploadPor": "usr-2",
+      "criadoEm": "2023-05-10T09:00:00Z"
+    },
+    {
+      "id": "doc-4",
+      "processoId": "proc-3",
+      "nome": "Sentença - 2ª Vara Criminal.pdf",
+      "tipo": "sentenca",
+      "tamanhoBytes": 356120,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2022-09-15T16:40:00Z",
+          "usuarioId": "usr-1"
+        }
+      ],
+      "uploadPor": "usr-1",
+      "criadoEm": "2022-09-15T16:40:00Z"
+    },
+    {
+      "id": "doc-5",
+      "processoId": "proc-3",
+      "nome": "Razões de Apelação.pdf",
+      "tipo": "peticao",
+      "tamanhoBytes": 512900,
+      "versao": 3,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2023-01-05T08:00:00Z",
+          "usuarioId": "usr-1"
+        },
+        {
+          "versao": 2,
+          "dataUpload": "2023-01-08T14:20:00Z",
+          "usuarioId": "usr-1"
+        },
+        {
+          "versao": 3,
+          "dataUpload": "2023-01-10T09:15:00Z",
+          "usuarioId": "usr-1"
+        }
+      ],
+      "uploadPor": "usr-1",
+      "criadoEm": "2023-01-05T08:00:00Z"
+    },
+    {
+      "id": "doc-6",
+      "processoId": "proc-4",
+      "nome": "Contrato de Fornecimento - Ferreira x Aço Forte.pdf",
+      "tipo": "contrato",
+      "tamanhoBytes": 640200,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2023-01-18T13:00:00Z",
+          "usuarioId": "usr-2"
+        }
+      ],
+      "uploadPor": "usr-2",
+      "criadoEm": "2023-01-18T13:00:00Z"
+    },
+    {
+      "id": "doc-7",
+      "processoId": "proc-6",
+      "nome": "Notas Fiscais em Aberto.pdf",
+      "tipo": "comprovante",
+      "tamanhoBytes": 150600,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2024-02-06T10:00:00Z",
+          "usuarioId": "usr-2"
+        }
+      ],
+      "uploadPor": "usr-2",
+      "criadoEm": "2024-02-06T10:00:00Z"
+    },
+    {
+      "id": "doc-8",
+      "processoId": "proc-7",
+      "nome": "Sentença de Improcedência.pdf",
+      "tipo": "sentenca",
+      "tamanhoBytes": 298770,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2022-12-01T17:00:00Z",
+          "usuarioId": "usr-1"
+        }
+      ],
+      "uploadPor": "usr-1",
+      "criadoEm": "2022-12-01T17:00:00Z"
+    },
+    {
+      "id": "doc-9",
+      "processoId": "proc-9",
+      "nome": "Aditivo Contratual nº 03.pdf",
+      "tipo": "contrato",
+      "tamanhoBytes": 187340,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2023-06-22T09:30:00Z",
+          "usuarioId": "usr-1"
+        }
+      ],
+      "uploadPor": "usr-1",
+      "criadoEm": "2023-06-22T09:30:00Z"
+    },
+    {
+      "id": "doc-10",
+      "processoId": "proc-12",
+      "nome": "Formal de Partilha.pdf",
+      "tipo": "sentenca",
+      "tamanhoBytes": 420500,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2023-05-30T15:00:00Z",
+          "usuarioId": "usr-2"
+        }
+      ],
+      "uploadPor": "usr-2",
+      "criadoEm": "2023-05-30T15:00:00Z"
+    },
+    {
+      "id": "doc-11",
+      "processoId": "proc-13",
+      "nome": "Laudo de Perícia de Software.pdf",
+      "tipo": "outro",
+      "tamanhoBytes": 890120,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2023-10-08T10:00:00Z",
+          "usuarioId": "usr-1"
+        }
+      ],
+      "uploadPor": "usr-1",
+      "criadoEm": "2023-10-08T10:00:00Z"
+    },
+    {
+      "id": "doc-12",
+      "processoId": "proc-15",
+      "nome": "Comprovante de Compra de Passagem.pdf",
+      "tipo": "comprovante",
+      "tamanhoBytes": 76200,
+      "versao": 1,
+      "versoes": [
+        {
+          "versao": 1,
+          "dataUpload": "2024-05-15T12:00:00Z",
+          "usuarioId": "usr-1"
+        }
+      ],
+      "uploadPor": "usr-1",
+      "criadoEm": "2024-05-15T12:00:00Z"
+    }
+  ],
+  "audiencias": [
+    {
+      "id": "aud-1",
+      "processoId": "proc-1",
+      "tipo": "conciliacao",
+      "data": "2026-08-25T14:00:00",
+      "local": "Fórum João Mendes Jr., Sala 12",
+      "virtual": false,
+      "status": "agendada",
+      "advogadoId": "usr-1"
+    },
+    {
+      "id": "aud-2",
+      "processoId": "proc-8",
+      "tipo": "instrucao",
+      "data": "2026-08-14T09:30:00",
+      "local": "Videoconferência",
+      "virtual": true,
+      "linkVideo": "https://meet.tjpr.jus.br/sala-8842",
+      "status": "agendada",
+      "advogadoId": "usr-2"
+    },
+    {
+      "id": "aud-3",
+      "processoId": "proc-2",
+      "tipo": "una",
+      "data": "2026-09-03T10:00:00",
+      "local": "30ª Vara do Trabalho, Sala 4",
+      "virtual": false,
+      "status": "agendada",
+      "advogadoId": "usr-2"
+    },
+    {
+      "id": "aud-4",
+      "processoId": "proc-15",
+      "tipo": "conciliacao",
+      "data": "2026-09-01T11:00:00",
+      "local": "Videoconferência",
+      "virtual": true,
+      "linkVideo": "https://meet.tjsc.jus.br/sala-3301",
+      "status": "agendada",
+      "advogadoId": "usr-1"
+    },
+    {
+      "id": "aud-5",
+      "processoId": "proc-9",
+      "tipo": "instrucao",
+      "data": "2026-09-18T15:00:00",
+      "local": "Fórum Clóvis Beviláqua, Sala 7",
+      "virtual": false,
+      "status": "agendada",
+      "advogadoId": "usr-1"
+    },
+    {
+      "id": "aud-6",
+      "processoId": "proc-3",
+      "tipo": "julgamento",
+      "data": "2026-10-05T13:30:00",
+      "local": "Tribunal de Justiça de MG, Turma Criminal",
+      "virtual": false,
+      "status": "agendada",
+      "advogadoId": "usr-1"
+    },
+    {
+      "id": "aud-7",
+      "processoId": "proc-7",
+      "tipo": "julgamento",
+      "data": "2022-11-20T14:00:00",
+      "local": "Fórum João Mendes Jr., Sala 5",
+      "virtual": false,
+      "status": "realizada",
+      "advogadoId": "usr-1"
+    },
+    {
+      "id": "aud-8",
+      "processoId": "proc-12",
+      "tipo": "instrucao",
+      "data": "2023-04-15T09:00:00",
+      "local": "Vara de Família, Sala 2",
+      "virtual": false,
+      "status": "realizada",
+      "advogadoId": "usr-2"
+    },
+    {
+      "id": "aud-9",
+      "processoId": "proc-16",
+      "tipo": "conciliacao",
+      "data": "2026-08-20T16:00:00",
+      "local": "Videoconferência",
+      "virtual": true,
+      "linkVideo": "https://meet.trt2.jus.br/sala-1290",
+      "status": "agendada",
+      "advogadoId": "usr-2"
+    }
+  ],
+  "faturas": [
+    {
+      "id": "fat-1",
+      "clienteId": "cli-1",
+      "processoId": "proc-1",
+      "numero": "NF-2026-0001",
+      "itens": [
+        {
+          "descricao": "Honorários - Ação de Indenização (1ª parcela)",
+          "valor": 8500
+        }
+      ],
+      "valorTotal": 8500,
+      "dataEmissao": "2026-03-05",
+      "dataVencimento": "2026-04-05",
+      "dataPagamento": "2026-04-01",
+      "status": "paga",
+      "formaPagamento": "pix"
+    },
+    {
+      "id": "fat-2",
+      "clienteId": "cli-2",
+      "processoId": "proc-2",
+      "numero": "NF-2026-0002",
+      "itens": [
+        {
+          "descricao": "Honorários - Ação Trabalhista",
+          "valor": 6300
+        }
+      ],
+      "valorTotal": 6300,
+      "dataEmissao": "2026-03-15",
+      "dataVencimento": "2026-04-15",
+      "dataPagamento": "2026-04-10",
+      "status": "paga",
+      "formaPagamento": "boleto"
+    },
+    {
+      "id": "fat-3",
+      "clienteId": "cli-4",
+      "processoId": "proc-4",
+      "numero": "NF-2026-0003",
+      "itens": [
+        {
+          "descricao": "Honorários contratuais - Rescisão",
+          "valor": 32000
+        }
+      ],
+      "valorTotal": 32000,
+      "dataEmissao": "2026-03-20",
+      "dataVencimento": "2026-04-20",
+      "status": "atrasada"
+    },
+    {
+      "id": "fat-4",
+      "clienteId": "cli-5",
+      "processoId": "proc-6",
+      "numero": "NF-2026-0004",
+      "itens": [
+        {
+          "descricao": "Honorários - Ação de Cobrança",
+          "valor": 5800
+        },
+        {
+          "descricao": "Despesas processuais",
+          "valor": 450
+        }
+      ],
+      "valorTotal": 6250,
+      "dataEmissao": "2026-04-02",
+      "dataVencimento": "2026-05-02",
+      "dataPagamento": "2026-04-28",
+      "status": "paga",
+      "formaPagamento": "transferencia"
+    },
+    {
+      "id": "fat-5",
+      "clienteId": "cli-7",
+      "processoId": "proc-9",
+      "numero": "NF-2026-0005",
+      "itens": [
+        {
+          "descricao": "Honorários - Ação Cível",
+          "valor": 27500
+        }
+      ],
+      "valorTotal": 27500,
+      "dataEmissao": "2026-04-10",
+      "dataVencimento": "2026-05-10",
+      "status": "pendente"
+    },
+    {
+      "id": "fat-6",
+      "clienteId": "cli-9",
+      "processoId": "proc-13",
+      "numero": "NF-2026-0006",
+      "itens": [
+        {
+          "descricao": "Honorários - Propriedade Intelectual (entrada)",
+          "valor": 42000
+        }
+      ],
+      "valorTotal": 42000,
+      "dataEmissao": "2026-04-18",
+      "dataVencimento": "2026-05-18",
+      "dataPagamento": "2026-05-15",
+      "status": "paga",
+      "formaPagamento": "cartao"
+    },
+    {
+      "id": "fat-7",
+      "clienteId": "cli-3",
+      "numero": "NF-2026-0007",
+      "itens": [
+        {
+          "descricao": "Consultoria jurídica avulsa",
+          "valor": 1500
+        }
+      ],
+      "valorTotal": 1500,
+      "dataEmissao": "2026-04-25",
+      "dataVencimento": "2026-05-25",
+      "status": "cancelada"
+    },
+    {
+      "id": "fat-8",
+      "clienteId": "cli-6",
+      "processoId": "proc-8",
+      "numero": "NF-2026-0008",
+      "itens": [
+        {
+          "descricao": "Honorários - Ação de Divórcio",
+          "valor": 4200
+        }
+      ],
+      "valorTotal": 4200,
+      "dataEmissao": "2026-05-03",
+      "dataVencimento": "2026-06-03",
+      "dataPagamento": "2026-05-30",
+      "status": "paga",
+      "formaPagamento": "pix"
+    },
+    {
+      "id": "fat-9",
+      "clienteId": "cli-8",
+      "processoId": "proc-11",
+      "numero": "NF-2026-0009",
+      "itens": [
+        {
+          "descricao": "Honorários finais - Ação de Cobrança de Seguro",
+          "valor": 3000
+        }
+      ],
+      "valorTotal": 3000,
+      "dataEmissao": "2026-05-12",
+      "dataVencimento": "2026-06-12",
+      "dataPagamento": "2026-06-05",
+      "status": "paga",
+      "formaPagamento": "boleto"
+    },
+    {
+      "id": "fat-10",
+      "clienteId": "cli-10",
+      "processoId": "proc-15",
+      "numero": "NF-2026-0010",
+      "itens": [
+        {
+          "descricao": "Honorários - Ação por Danos Morais",
+          "valor": 2100
+        }
+      ],
+      "valorTotal": 2100,
+      "dataEmissao": "2026-05-20",
+      "dataVencimento": "2026-06-20",
+      "status": "atrasada"
+    },
+    {
+      "id": "fat-11",
+      "clienteId": "cli-1",
+      "processoId": "proc-16",
+      "numero": "NF-2026-0011",
+      "itens": [
+        {
+          "descricao": "Honorários - Defesa Trabalhista",
+          "valor": 6700
+        }
+      ],
+      "valorTotal": 6700,
+      "dataEmissao": "2026-06-01",
+      "dataVencimento": "2026-07-01",
+      "dataPagamento": "2026-06-25",
+      "status": "paga",
+      "formaPagamento": "transferencia"
+    },
+    {
+      "id": "fat-12",
+      "clienteId": "cli-4",
+      "processoId": "proc-5",
+      "numero": "NF-2026-0012",
+      "itens": [
+        {
+          "descricao": "Honorários - Mandado de Segurança Tributário",
+          "valor": 61000
+        }
+      ],
+      "valorTotal": 61000,
+      "dataEmissao": "2026-06-08",
+      "dataVencimento": "2026-07-08",
+      "status": "pendente"
+    },
+    {
+      "id": "fat-13",
+      "clienteId": "cli-7",
+      "processoId": "proc-10",
+      "numero": "NF-2026-0013",
+      "itens": [
+        {
+          "descricao": "Honorários - Recurso Administrativo Fiscal",
+          "valor": 19000
+        }
+      ],
+      "valorTotal": 19000,
+      "dataEmissao": "2026-06-15",
+      "dataVencimento": "2026-07-15",
+      "dataPagamento": "2026-07-10",
+      "status": "paga",
+      "formaPagamento": "pix"
+    },
+    {
+      "id": "fat-14",
+      "clienteId": "cli-9",
+      "processoId": "proc-14",
+      "numero": "NF-2026-0014",
+      "itens": [
+        {
+          "descricao": "Honorários - Recurso Especial Tributário",
+          "valor": 9500
+        }
+      ],
+      "valorTotal": 9500,
+      "dataEmissao": "2026-06-22",
+      "dataVencimento": "2026-07-22",
+      "status": "atrasada"
+    },
+    {
+      "id": "fat-15",
+      "clienteId": "cli-2",
+      "numero": "NF-2026-0015",
+      "itens": [
+        {
+          "descricao": "Consultoria trabalhista preventiva",
+          "valor": 2800
+        }
+      ],
+      "valorTotal": 2800,
+      "dataEmissao": "2026-07-02",
+      "dataVencimento": "2026-08-02",
+      "dataPagamento": "2026-07-28",
+      "status": "paga",
+      "formaPagamento": "cartao"
+    },
+    {
+      "id": "fat-16",
+      "clienteId": "cli-5",
+      "processoId": "proc-7",
+      "numero": "NF-2026-0016",
+      "itens": [
+        {
+          "descricao": "Honorários finais - Ação Empresarial",
+          "valor": 15000
+        }
+      ],
+      "valorTotal": 15000,
+      "dataEmissao": "2026-07-10",
+      "dataVencimento": "2026-08-10",
+      "dataPagamento": "2026-08-05",
+      "status": "paga",
+      "formaPagamento": "transferencia"
+    },
+    {
+      "id": "fat-17",
+      "clienteId": "cli-3",
+      "processoId": "proc-3",
+      "numero": "NF-2026-0017",
+      "itens": [
+        {
+          "descricao": "Honorários - Recurso de Apelação Criminal",
+          "valor": 12000
+        }
+      ],
+      "valorTotal": 12000,
+      "dataEmissao": "2026-07-20",
+      "dataVencimento": "2026-08-20",
+      "status": "pendente"
+    },
+    {
+      "id": "fat-18",
+      "clienteId": "cli-8",
+      "processoId": "proc-12",
+      "numero": "NF-2026-0018",
+      "itens": [
+        {
+          "descricao": "Honorários - Ação de Inventário",
+          "valor": 5000
+        },
+        {
+          "descricao": "Custas cartorárias",
+          "valor": 620
+        }
+      ],
+      "valorTotal": 5620,
+      "dataEmissao": "2026-08-01",
+      "dataVencimento": "2026-09-01",
+      "status": "pendente"
+    },
+    {
+      "id": "fat-19",
+      "clienteId": "cli-6",
+      "numero": "NF-2026-0019",
+      "itens": [
+        {
+          "descricao": "Consultoria jurídica familiar",
+          "valor": 900
+        }
+      ],
+      "valorTotal": 900,
+      "dataEmissao": "2026-08-08",
+      "dataVencimento": "2026-09-08",
+      "status": "pendente"
+    }
+  ]
+}
