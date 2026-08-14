@@ -33,10 +33,49 @@
   }
 
   &__link {
+    width: 100%;
+
     &--ativo {
       --mat-list-list-item-label-text-color: #fff;
       --mat-list-list-item-leading-icon-color: #d4af37;
       background: rgba(212, 175, 55, 0.15);
     }
+
+    &--filho {
+      --mat-list-list-item-one-line-container-height: 40px;
+
+      ::ng-deep .mdc-list-item__content {
+        padding-left: 2.75rem;
+      }
+    }
+  }
+
+  &__grupo-header {
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+    border: none;
+    background: transparent;
+
+    &--ativo {
+      --mat-list-list-item-label-text-color: #fff;
+      --mat-list-list-item-leading-icon-color: #d4af37;
+    }
+  }
+
+  &__chevron {
+    font-family: 'Material Icons' !important;
+    color: rgba(255, 255, 255, 0.55);
+    transition: transform 0.2s ease;
+
+    &--aberto {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__submenu {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 }

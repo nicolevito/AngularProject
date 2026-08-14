@@ -5,17 +5,51 @@
   </div>
 
   <mat-nav-list class="sidebar__nav">
-    @for (item of itens(); track item.rota) {
-      <a
-        mat-list-item
-        [routerLink]="item.rota"
-        routerLinkActive="sidebar__link--ativo"
-        class="sidebar__link"
-        (click)="itemClicado.emit()"
-      >
-        <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
-        <span matListItemTitle>{{ item.label }}</span>
-      </a>
+    @for (item of itens(); track item.label) {
+      @if (item.filhos) {
+        <button
+          type="button"
+          mat-list-item
+          class="sidebar__link sidebar__grupo-header"
+          [class.sidebar__grupo-header--ativo]="grupoAtivo(item)"
+          (click)="alternarGrupo(item)"
+        >
+          <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+          <mat-icon matListItemMeta class="sidebar__chevron" [class.sidebar__chevron--aberto]="grupoAberto(item)">
+            expand_more
+          </mat-icon>
+        </button>
+
+        @if (grupoAberto(item)) {
+          <div class="sidebar__submenu">
+            @for (filho of item.filhos; track filho.label) {
+              <a
+                mat-list-item
+                [routerLink]="filho.rota"
+                [queryParams]="filho.queryParams ?? {}"
+                routerLinkActive="sidebar__link--ativo"
+                [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'exact', matrixParams: 'ignored', fragment: 'ignored' }"
+                class="sidebar__link sidebar__link--filho"
+                (click)="itemClicado.emit()"
+              >
+                <span matListItemTitle>{{ filho.label }}</span>
+              </a>
+            }
+          </div>
+        }
+      } @else {
+        <a
+          mat-list-item
+          [routerLink]="item.rota"
+          routerLinkActive="sidebar__link--ativo"
+          class="sidebar__link"
+          (click)="itemClicado.emit()"
+        >
+          <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </a>
+      }
     }
   </mat-nav-list>
 </div>
