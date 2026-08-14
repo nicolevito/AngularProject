@@ -1,5 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -43,10 +44,10 @@ export class ClienteList {
   private readonly clienteService = inject(ClienteService);
   private readonly snackBar = inject(MatSnackBar);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly clientes = this.clienteService.clientes;
   readonly busca = signal('');
-  readonly statusFiltro = signal<StatusCliente | ''>(this.statusInicialDaRota());
   readonly pagina = signal(0);
   readonly tamanhoPagina = signal(5);
 
@@ -56,10 +57,12 @@ export class ClienteList {
   readonly nomeExibicaoCliente = nomeExibicaoCliente;
   readonly documentoCliente = documentoCliente;
 
-  private statusInicialDaRota(): StatusCliente | '' {
-    const status = this.route.snapshot.queryParamMap.get('status');
+  private readonly queryParams = toSignal(this.route.queryParamMap, { initialValue: this.route.snapshot.queryParamMap });
+
+  readonly statusFiltro = computed<StatusCliente | ''>(() => {
+    const status = this.queryParams().get('status');
     return status === 'ativo' || status === 'inativo' ? status : '';
-  }
+  });
 
   statusLabel(status: StatusCliente): string {
     return STATUS_CLIENTE_LABEL[status];
@@ -92,7 +95,7 @@ export class ClienteList {
   }
 
   filtrarStatus(status: StatusCliente | ''): void {
-    this.statusFiltro.set(status);
+    this.router.navigate([], { relativeTo: this.route, queryParams: { status: status || null }, queryParamsHandling: 'merge' });
     this.pagina.set(0);
   }
 

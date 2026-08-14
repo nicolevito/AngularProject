@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -45,15 +46,17 @@ export class FaturaList {
   private readonly faturaService = inject(FaturaService);
   private readonly clienteService = inject(ClienteService);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
-  readonly statusFiltro = signal<StatusFatura | ''>(this.statusInicialDaRota());
+  private readonly queryParams = toSignal(this.route.queryParamMap, { initialValue: this.route.snapshot.queryParamMap });
+
+  readonly statusFiltro = computed<StatusFatura | ''>(() => {
+    const status = this.queryParams().get('status');
+    return status && status in STATUS_FATURA_LABEL ? (status as StatusFatura) : '';
+  });
+
   readonly colunas = ['numero', 'cliente', 'emissao', 'vencimento', 'valor', 'status', 'acoes'];
   readonly statusOpcoes = Object.entries(STATUS_FATURA_LABEL) as [StatusFatura, string][];
-
-  private statusInicialDaRota(): StatusFatura | '' {
-    const status = this.route.snapshot.queryParamMap.get('status');
-    return status && status in STATUS_FATURA_LABEL ? (status as StatusFatura) : '';
-  }
   readonly formasPagamento: FormaPagamento[] = ['pix', 'boleto', 'cartao', 'transferencia'];
 
   private readonly nomeClientePorId = computed(() => {
@@ -93,7 +96,7 @@ export class FaturaList {
   });
 
   filtrarStatus(status: StatusFatura | ''): void {
-    this.statusFiltro.set(status);
+    this.router.navigate([], { relativeTo: this.route, queryParams: { status: status || null }, queryParamsHandling: 'merge' });
   }
 
   marcarPaga(id: string, formaPagamento: FormaPagamento): void {
