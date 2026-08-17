@@ -1,35 +1,21 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Prazo } from '../../../core/models';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { API_BASE_URL } from '../../../core/config/api.config';
+import { HttpCollection } from '../../../shared/services/http-collection';
+
+type PrazoDados = Omit<Prazo, 'id'>;
 
 @Injectable({ providedIn: 'root' })
-export class PrazoService {
-  private readonly mockDb = inject(MockDbService);
+export class PrazoService extends HttpCollection<Prazo, PrazoDados> {
+  readonly prazos = this.itens;
 
-  readonly prazos = this.mockDb.prazos.items;
-
-  list(): Observable<Prazo[]> {
-    return this.mockDb.prazos.list();
-  }
-
-  getById(id: string): Observable<Prazo | undefined> {
-    return this.mockDb.prazos.getById(id);
-  }
-
-  create(dados: Omit<Prazo, 'id'>): Observable<Prazo> {
-    return this.mockDb.prazos.create(dados);
-  }
-
-  update(id: string, changes: Partial<Prazo>): Observable<Prazo> {
-    return this.mockDb.prazos.update(id, changes);
-  }
-
-  remove(id: string): Observable<void> {
-    return this.mockDb.prazos.remove(id);
+  constructor() {
+    super(`${API_BASE_URL}/prazos`);
   }
 
   concluir(id: string): Observable<Prazo> {
-    return this.mockDb.prazos.update(id, { concluido: true, dataConclusao: new Date().toISOString() });
+    return this.http.post<Prazo>(`${this.url}/${id}/concluir`, {}).pipe(tap(() => this.recarregar()));
   }
 }

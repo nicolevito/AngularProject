@@ -10,7 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PrazoService } from '../data-access/prazo.service';
 import { ProcessoService } from '../../processos/data-access/processo.service';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { UsuarioService } from '../../../shared/services/usuario.service';
 import { EmptyState } from '../../../shared/components/empty-state/empty-state';
 import { StatusBadge, CorBadge } from '../../../shared/components/status-badge/status-badge';
 import { calcularUrgencia, TIPO_PRAZO_LABEL, UrgenciaPrazo } from '../../../core/models';
@@ -50,7 +50,7 @@ const LABEL_URGENCIA: Record<UrgenciaPrazo, string> = {
 export class PrazoList {
   private readonly prazoService = inject(PrazoService);
   private readonly processoService = inject(ProcessoService);
-  private readonly mockDb = inject(MockDbService);
+  private readonly usuarioService = inject(UsuarioService);
 
   readonly mostrarConcluidos = signal(false);
   readonly colunas = ['titulo', 'processo', 'tipo', 'vencimento', 'urgencia', 'responsavel', 'acoes'];
@@ -67,7 +67,7 @@ export class PrazoList {
 
   private readonly nomeUsuarioPorId = computed(() => {
     const mapa = new Map<string, string>();
-    this.mockDb.usuarios.items().forEach((u) => mapa.set(u.id, u.nome));
+    this.usuarioService.usuarios().forEach((u) => mapa.set(u.id, u.nome));
     return mapa;
   });
 

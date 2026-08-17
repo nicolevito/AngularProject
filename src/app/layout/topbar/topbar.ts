@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthService } from '../../core/auth/auth.service';
-import { MockDbService } from '../../core/mock-data/mock-db.service';
+import { AdminService } from '../../shared/services/admin.service';
 
 const ROLE_LABEL: Record<string, string> = {
   advogado: 'Advogado(a)',
@@ -21,7 +21,7 @@ const ROLE_LABEL: Record<string, string> = {
 })
 export class Topbar {
   private readonly authService = inject(AuthService);
-  private readonly mockDb = inject(MockDbService);
+  private readonly adminService = inject(AdminService);
   private readonly router = inject(Router);
 
   readonly abrirMenu = output<void>();
@@ -35,6 +35,6 @@ export class Topbar {
   }
 
   resetarDados(): void {
-    this.mockDb.resetarDadosDemo();
+    this.adminService.resetarDadosDemo().subscribe(() => window.location.reload());
   }
 }

@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClienteService } from '../data-access/cliente.service';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { ProcessoService } from '../../processos/data-access/processo.service';
 import { CpfCnpjPipe } from '../../../shared/pipes/cpf-cnpj.pipe';
 import { StatusBadge, CorBadge } from '../../../shared/components/status-badge/status-badge';
 import {
@@ -34,14 +34,14 @@ export class ClienteDetail {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly clienteService = inject(ClienteService);
-  private readonly mockDb = inject(MockDbService);
+  private readonly processoService = inject(ProcessoService);
   private readonly snackBar = inject(MatSnackBar);
 
   readonly clienteId = this.route.snapshot.paramMap.get('id')!;
   readonly cliente = toSignal(this.clienteService.getById(this.clienteId));
 
   readonly processos = computed(() =>
-    this.mockDb.processos.items().filter((processo) => processo.clienteId === this.clienteId),
+    this.processoService.processos().filter((processo) => processo.clienteId === this.clienteId),
   );
 
   readonly nomeExibicaoCliente = nomeExibicaoCliente;

@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 
 from app.config import settings
 from app.database import SessionLocal
-from app.routers import admin, audiencias, auth, cep, clientes, documentos, faturas, prazos, processos
+from app.routers import admin, audiencias, auth, cep, clientes, documentos, faturas, prazos, processos, usuarios
 from app.seed import semear_se_vazio
 
 
@@ -45,6 +45,7 @@ async def health() -> dict[str, str]:
 
 
 app.include_router(auth.router)
+app.include_router(usuarios.router)
 app.include_router(clientes.router)
 app.include_router(processos.router)
 app.include_router(prazos.router)

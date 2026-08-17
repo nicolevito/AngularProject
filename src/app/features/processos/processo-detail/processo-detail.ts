@@ -11,7 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ProcessoService } from '../data-access/processo.service';
 import { ClienteService } from '../../clientes/data-access/cliente.service';
 import { PrazoService } from '../../prazos/data-access/prazo.service';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { DocumentoService } from '../../documentos/data-access/documento.service';
+import { UsuarioService } from '../../../shared/services/usuario.service';
 import { StatusBadge } from '../../../shared/components/status-badge/status-badge';
 import { HasRoleDirective } from '../../../shared/directives/has-role.directive';
 import {
@@ -56,7 +57,8 @@ export class ProcessoDetail {
   private readonly processoService = inject(ProcessoService);
   private readonly clienteService = inject(ClienteService);
   private readonly prazoService = inject(PrazoService);
-  private readonly mockDb = inject(MockDbService);
+  private readonly documentoService = inject(DocumentoService);
+  private readonly usuarioService = inject(UsuarioService);
   private readonly fb = inject(FormBuilder);
 
   readonly processoId = this.route.snapshot.paramMap.get('id')!;
@@ -78,7 +80,7 @@ export class ProcessoDetail {
   });
 
   readonly advogado = computed(() =>
-    this.mockDb.usuarios.items().find((u) => u.id === this.processo()?.advogadoResponsavelId),
+    this.usuarioService.usuarios().find((u) => u.id === this.processo()?.advogadoResponsavelId),
   );
 
   readonly andamentosOrdenados = computed(() =>
@@ -90,7 +92,7 @@ export class ProcessoDetail {
   );
 
   readonly documentos = computed(() =>
-    this.mockDb.documentos.items().filter((documento) => documento.processoId === this.processoId),
+    this.documentoService.documentos().filter((documento) => documento.processoId === this.processoId),
   );
 
   readonly mostrandoFormAndamento = signal(false);

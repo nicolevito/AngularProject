@@ -1,31 +1,15 @@
-import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { Audiencia } from '../../../core/models';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { API_BASE_URL } from '../../../core/config/api.config';
+import { HttpCollection } from '../../../shared/services/http-collection';
+
+type AudienciaDados = Omit<Audiencia, 'id'>;
 
 @Injectable({ providedIn: 'root' })
-export class AudienciaService {
-  private readonly mockDb = inject(MockDbService);
+export class AudienciaService extends HttpCollection<Audiencia, AudienciaDados> {
+  readonly audiencias = this.itens;
 
-  readonly audiencias = this.mockDb.audiencias.items;
-
-  list(): Observable<Audiencia[]> {
-    return this.mockDb.audiencias.list();
-  }
-
-  getById(id: string): Observable<Audiencia | undefined> {
-    return this.mockDb.audiencias.getById(id);
-  }
-
-  create(dados: Omit<Audiencia, 'id'>): Observable<Audiencia> {
-    return this.mockDb.audiencias.create(dados);
-  }
-
-  update(id: string, changes: Partial<Audiencia>): Observable<Audiencia> {
-    return this.mockDb.audiencias.update(id, changes);
-  }
-
-  remove(id: string): Observable<void> {
-    return this.mockDb.audiencias.remove(id);
+  constructor() {
+    super(`${API_BASE_URL}/audiencias`);
   }
 }

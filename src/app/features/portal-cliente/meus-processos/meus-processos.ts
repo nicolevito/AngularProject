@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { PortalService } from '../data-access/portal.service';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { UsuarioService } from '../../../shared/services/usuario.service';
 import { EmptyState } from '../../../shared/components/empty-state/empty-state';
 import { StatusBadge, CorBadge } from '../../../shared/components/status-badge/status-badge';
 import {
@@ -39,7 +39,7 @@ const TIPO_ANDAMENTO_LABEL: Record<TipoAndamento, string> = {
 })
 export class MeusProcessos {
   private readonly portalService = inject(PortalService);
-  private readonly mockDb = inject(MockDbService);
+  private readonly usuarioService = inject(UsuarioService);
 
   readonly processos = this.portalService.meusProcessos;
   readonly AREA_DIREITO_LABEL = AREA_DIREITO_LABEL;
@@ -54,7 +54,7 @@ export class MeusProcessos {
   }
 
   advogadoNome(processo: Processo): string {
-    return this.mockDb.usuarios.items().find((u) => u.id === processo.advogadoResponsavelId)?.nome ?? '—';
+    return this.usuarioService.usuarios().find((u) => u.id === processo.advogadoResponsavelId)?.nome ?? '—';
   }
 
   andamentosOrdenados(processo: Processo) {

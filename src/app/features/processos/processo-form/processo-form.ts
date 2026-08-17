@@ -23,7 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProcessoService } from '../data-access/processo.service';
 import { ClienteService } from '../../clientes/data-access/cliente.service';
 import { PrazoService } from '../../prazos/data-access/prazo.service';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { UsuarioService } from '../../../shared/services/usuario.service';
 import { numeroProcessoUniqueValidator } from '../../../shared/validators/numero-processo-unique.validator';
 import { partesMinimoValidator } from '../../../shared/validators/partes-minimo.validator';
 import { documentoValidator } from '../../../shared/validators/documento.validator';
@@ -32,6 +32,7 @@ import {
   AreaDireito,
   nomeExibicaoCliente,
   Parte,
+  Processo,
   TIPO_PRAZO_LABEL,
   TipoParte,
   TipoPrazo,
@@ -69,7 +70,7 @@ export class ProcessoForm implements OnInit {
   private readonly processoService = inject(ProcessoService);
   private readonly clienteService = inject(ClienteService);
   private readonly prazoService = inject(PrazoService);
-  private readonly mockDb = inject(MockDbService);
+  private readonly usuarioService = inject(UsuarioService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
@@ -80,7 +81,7 @@ export class ProcessoForm implements OnInit {
   readonly modoEdicao = this.processoId !== null;
 
   readonly clientes = this.clienteService.clientes;
-  readonly advogados = () => this.mockDb.usuarios.items().filter((u) => u.role === 'advogado');
+  readonly advogados = () => this.usuarioService.usuarios().filter((u) => u.role === 'advogado');
 
   readonly areas = Object.entries(AREA_DIREITO_LABEL) as [AreaDireito, string][];
   readonly tiposPrazo = Object.entries(TIPO_PRAZO_LABEL) as [TipoPrazo, string][];
@@ -115,6 +116,9 @@ export class ProcessoForm implements OnInit {
   readonly numeroProcessoStatus = toSignal(this.form.controls.numeroProcesso.statusChanges, {
     initialValue: this.form.controls.numeroProcesso.status,
   });
+
+  /** Guarda status/andamentos/documentoIds do processo em edição — a API espera o objeto completo no PUT. */
+  private processoOriginal: Processo | null = null;
 
   private criarParteGroup(tipo: TipoParte = 'autor', parte?: Parte) {
     return this.fb.nonNullable.group({
@@ -156,6 +160,7 @@ export class ProcessoForm implements OnInit {
     if (this.modoEdicao && this.processoId) {
       this.processoService.getById(this.processoId).subscribe((processo) => {
         if (!processo) return;
+        this.processoOriginal = processo;
         this.partes.clear();
         processo.partes.forEach((parte) => this.partes.push(this.criarParteGroup(parte.tipo, parte)));
 
@@ -222,7 +227,12 @@ export class ProcessoForm implements OnInit {
     };
 
     const operacao$ = this.modoEdicao && this.processoId
-      ? this.processoService.update(this.processoId, dadosComuns)
+      ? this.processoService.update(this.processoId, {
+          ...dadosComuns,
+          status: this.processoOriginal?.status ?? 'ativo',
+          andamentos: this.processoOriginal?.andamentos ?? [],
+          documentoIds: this.processoOriginal?.documentoIds ?? [],
+        })
       : this.processoService.create({ ...dadosComuns, status: 'ativo', andamentos: [], documentoIds: [] });
 
     operacao$

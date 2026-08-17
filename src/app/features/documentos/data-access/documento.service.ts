@@ -1,21 +1,18 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Documento } from '../../../core/models';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { API_BASE_URL } from '../../../core/config/api.config';
+import { HttpCollection } from '../../../shared/services/http-collection';
+
+type DocumentoDados = Omit<Documento, 'id'>;
 
 @Injectable({ providedIn: 'root' })
-export class DocumentoService {
-  private readonly mockDb = inject(MockDbService);
+export class DocumentoService extends HttpCollection<Documento, DocumentoDados> {
+  readonly documentos = this.itens;
 
-  readonly documentos = this.mockDb.documentos.items;
-
-  list(): Observable<Documento[]> {
-    return this.mockDb.documentos.list();
-  }
-
-  getById(id: string): Observable<Documento | undefined> {
-    return this.mockDb.documentos.getById(id);
+  constructor() {
+    super(`${API_BASE_URL}/documentos`);
   }
 
   upload(dados: {
@@ -25,40 +22,12 @@ export class DocumentoService {
     tamanhoBytes: number;
     uploadPor: string;
   }): Observable<Documento> {
-    const agora = new Date().toISOString();
-    return this.mockDb.documentos
-      .create({
-        ...dados,
-        versao: 1,
-        versoes: [{ versao: 1, dataUpload: agora, usuarioId: dados.uploadPor }],
-        criadoEm: agora,
-      })
-      .pipe(
-        switchMap((documento) =>
-          this.mockDb.processos
-            .update(dados.processoId, {
-              documentoIds: [
-                ...(this.mockDb.processos.items().find((p) => p.id === dados.processoId)?.documentoIds ?? []),
-                documento.id,
-              ],
-            })
-            .pipe(map(() => documento)),
-        ),
-      );
+    return this.http.post<Documento>(this.url, dados).pipe(tap(() => this.recarregar()));
   }
 
   adicionarVersao(id: string, usuarioId: string): Observable<Documento> {
-    const documento = this.mockDb.documentos.items().find((d) => d.id === id);
-    if (!documento) throw new Error(`Documento ${id} não encontrado.`);
-
-    const novaVersao = documento.versao + 1;
-    return this.mockDb.documentos.update(id, {
-      versao: novaVersao,
-      versoes: [...documento.versoes, { versao: novaVersao, dataUpload: new Date().toISOString(), usuarioId }],
-    });
-  }
-
-  remove(id: string): Observable<void> {
-    return this.mockDb.documentos.remove(id);
+    return this.http
+      .post<Documento>(`${this.url}/${id}/versoes`, {}, { params: { usuario_id: usuarioId } })
+      .pipe(tap(() => this.recarregar()));
   }
 }

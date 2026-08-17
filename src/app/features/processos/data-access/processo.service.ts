@@ -1,51 +1,32 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Andamento, Processo } from '../../../core/models';
-import { MockDbService } from '../../../core/mock-data/mock-db.service';
+import { API_BASE_URL } from '../../../core/config/api.config';
+import { HttpCollection } from '../../../shared/services/http-collection';
 import { VerificadorNumeroProcesso } from '../../../shared/validators/numero-processo-unique.validator';
 
+type ProcessoDados = Omit<Processo, 'id'>;
+
 @Injectable({ providedIn: 'root' })
-export class ProcessoService implements VerificadorNumeroProcesso {
-  private readonly mockDb = inject(MockDbService);
+export class ProcessoService extends HttpCollection<Processo, ProcessoDados> implements VerificadorNumeroProcesso {
+  readonly processos = this.itens;
 
-  readonly processos = this.mockDb.processos.items;
-
-  list(): Observable<Processo[]> {
-    return this.mockDb.processos.list();
-  }
-
-  getById(id: string): Observable<Processo | undefined> {
-    return this.mockDb.processos.getById(id);
+  constructor() {
+    super(`${API_BASE_URL}/processos`);
   }
 
   existeNumero(numero: string, idExcluido?: string): Observable<boolean> {
-    return this.mockDb.processos.list().pipe(
-      map((processos) =>
-        processos.some((processo) => processo.numeroProcesso === numero && processo.id !== idExcluido),
-      ),
-    );
-  }
-
-  create(dados: Omit<Processo, 'id'>): Observable<Processo> {
-    return this.mockDb.processos.create(dados);
-  }
-
-  update(id: string, changes: Partial<Processo>): Observable<Processo> {
-    return this.mockDb.processos.update(id, changes);
-  }
-
-  remove(id: string): Observable<void> {
-    return this.mockDb.processos.remove(id);
+    const params: Record<string, string> = { numero };
+    if (idExcluido) params['excluir_id'] = idExcluido;
+    return this.http
+      .get<{ existe: boolean }>(`${this.url}/verificar-numero`, { params })
+      .pipe(map((resposta) => resposta.existe));
   }
 
   adicionarAndamento(processoId: string, andamento: Omit<Andamento, 'id'>): Observable<Processo> {
-    const processo = this.mockDb.processos.items().find((p) => p.id === processoId);
-    if (!processo) throw new Error(`Processo ${processoId} não encontrado.`);
-
-    const novoAndamento: Andamento = { ...andamento, id: crypto.randomUUID() };
-    return this.mockDb.processos.update(processoId, {
-      andamentos: [...processo.andamentos, novoAndamento],
-    });
+    return this.http
+      .post<Processo>(`${this.url}/${processoId}/andamentos`, andamento)
+      .pipe(tap(() => this.recarregar()));
   }
 }
